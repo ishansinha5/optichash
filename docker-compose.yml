@@ -19,24 +19,19 @@ services:
       - comic_net
 
   # Zone 2: Java API Gateway (Stubbed for now)
-  gateway-java:
+  gateway_service:
     build: ./gateway-java
-    container_name: gateway_service
-    networks:
-      - comic_net
-    depends_on:
-      - spatial_db
-
-  # Zone 3: C++ Perceptual Hash Bouncer (The Compute Optimizer)
-  phash-cpp:
-    build: ./phash-cpp
-    container_name: phash_bouncer
     ports:
-      - "8081:8081"
+      - "8080:8080" # <-- This goes to Java!
     networks:
       - comic_net
-    depends_on:
-      - spatial_db
+
+  phash_bouncer:
+    build: ./phash-cpp
+    ports:
+      - "8081:8081" # <-- Put C++ back on 8081
+    networks:
+      - comic_net
 
   # Zone 4: Python FastAPI Brain (The PyTorch Fallback)
   ml-python:
