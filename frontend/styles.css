@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;800&display=swap');
 
+/* This single rule prevents the mobile width smush */
+* {
+    box-sizing: border-box; 
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -101,25 +106,30 @@ h1, h2, h3 {
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Allows natural downward scrolling */
+    overflow-y: auto; /* Turns the panel into a scrollable area */
     z-index: 10;
     box-shadow: 0 0 50px rgba(0,0,0,0.9);
+}
+
+/* Centers the text vertically if it's short, but lets it scroll if it's long */
+.content-area {
+    margin: auto 0;
+    padding: 40px 0;
 }
 
 .panel-left {
     left: 0;
     clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
     animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    /* Massive 35% right padding forces text away from the nav menu */
-    padding: 2rem 35% 2rem 5%; 
+    padding: 0 32% 0 6%; /* Leaves space for the floating nav */
 }
 
 .panel-right {
     right: 0;
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
     animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    /* Massive 35% left padding forces text away from the nav menu */
-    padding: 2rem 5% 2rem 35%; 
+    padding: 0 6% 0 32%; /* Leaves space for the floating nav */
 }
 
 @keyframes slideInLeft {
@@ -134,7 +144,7 @@ h1, h2, h3 {
 
 /* ====== ANGLED NAVIGATION (DESKTOP) ====== */
 .nav-angled {
-    position: absolute;
+    position: fixed; /* Glues the buttons to the browser window so they never scroll away */
     top: 50%;
     display: flex;
     flex-direction: column;
@@ -143,13 +153,13 @@ h1, h2, h3 {
 }
 
 .nav-left {
-    right: 5%; /* Pushed to extreme edge */
+    left: 49vw; /* Locks exactly inside the right slant */
     transform: translateY(-50%) rotate(-6deg); 
     align-items: flex-end;
 }
 
 .nav-right {
-    left: 5%; /* Pushed to extreme edge */
+    right: 49vw; /* Locks exactly inside the left slant */
     transform: translateY(-50%) rotate(-6deg); 
     align-items: flex-start;
 }
@@ -215,29 +225,27 @@ h1, h2, h3 {
 /* ====== MOBILE OVERRIDE ====== */
 @media (max-width: 768px) {
     .home-title {
-        font-size: 4rem; /* Scale down title for mobile */
+        font-size: 4rem; 
     }
+    
     .shader-panel {
         width: 100vw; 
         clip-path: none; 
-        padding: 110px 20px 40px 20px; /* Heavy top padding clears the nav */
-        align-items: center;
-        text-align: center;
-        overflow-y: auto;
+        padding: 100px 20px 40px 20px; /* Safe padding for nav */
     }
     
     .nav-angled {
-        top: 20px;
+        position: absolute; /* Anchors to top of panel, scrolls away gracefully */
+        top: 25px;
         left: 50%;
         transform: translateX(-50%) !important; 
         flex-direction: row; 
-        flex-wrap: wrap; /* Allows links to wrap if font is huge */
+        flex-wrap: wrap; 
         width: 90%;
         justify-content: center;
         gap: 1rem;
     }
 
-    /* Mobile Pill Nav Style */
     .nav-angled a {
         font-size: 1.1rem;
         background: rgba(255, 235, 59, 0.15);
@@ -247,13 +255,18 @@ h1, h2, h3 {
         color: #ffeb3b;
     }
     
+    .content-area {
+        padding: 0; 
+        margin: 0; 
+    }
+    
     .content-area h1 {
         font-size: 2.5rem;
     }
     
     .architectural-detail {
         text-align: left; 
-        font-size: 1rem; /* Base 1rem prevents aggressive scaling explosion */
+        font-size: 1rem; 
     }
     
     .home-buttons {
