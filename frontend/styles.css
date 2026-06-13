@@ -7,7 +7,8 @@ body, html {
     height: 100%;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    background-color: #0f172a; 
+    /* FIX: Set to transparent so it doesn't paint over the z-index images */
+    background-color: transparent; 
 }
 
 h1, h2, h3 {
@@ -18,7 +19,8 @@ h1, h2, h3 {
 
 /* ====== HOMEPAGE (Restored Blur) ====== */
 .homepage-bg {
-    background-image: url('/images/wallpaper_for_home.jpg');
+    background-color: #0f172a; /* Fallback moved here */
+    background-image: url('images/wallpaper_for_home.jpg'); /* Restored relative path */
     background-size: cover;
     background-position: center;
     filter: blur(5px);
@@ -29,48 +31,11 @@ h1, h2, h3 {
     height: 100%;
     z-index: -1;
 }
-.home-container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    position: relative;
-    z-index: 1;
-}
-.home-title {
-    font-size: 6rem;
-    text-shadow: 4px 4px 0px rgba(0,0,0,0.8), -2px -2px 0px rgba(0,0,0,0.8);
-    margin-bottom: 2rem;
-    color: #fff;
-}
-.home-buttons {
-    display: flex;
-    gap: 2rem;
-}
-.btn {
-    font-family: "Bangers", sans-serif;
-    font-size: 2.2rem;
-    color: white;
-    text-decoration: none;
-    padding: 1rem 3rem;
-    background-color: rgba(0,0,0,0.6);
-    border: 3px solid white;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-.btn:hover {
-    background-color: #ffeb3b;
-    border-color: #ffeb3b;
-    color: black;
-    transform: translateY(-5px);
-}
 
 /* ====== SUBPAGE BACKGROUND (Unblurred Base) ====== */
 .subpage-bg {
-    background-image: url('/images/wallpaper_for_home.jpg'); 
+    background-color: #0f172a; /* Fallback moved here */
+    background-image: url('images/wallpaper_for_home.jpg'); /* Restored relative path */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
