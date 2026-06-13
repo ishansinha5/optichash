@@ -122,14 +122,14 @@ h1, h2, h3 {
     left: 0;
     clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
     animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    padding: 0 32% 0 6%; /* Leaves space for the floating nav */
+    padding: 0 45% 0 6%; 
 }
 
 .panel-right {
     right: 0;
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
     animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    padding: 0 6% 0 32%; /* Leaves space for the floating nav */
+    padding: 0 6% 0 45%; 
 }
 
 @keyframes slideInLeft {
@@ -144,30 +144,33 @@ h1, h2, h3 {
 
 /* ====== ANGLED NAVIGATION (DESKTOP) ====== */
 .nav-angled {
-    position: fixed; /* Glues the buttons to the browser window so they never scroll away */
+    position: fixed; 
     top: 50%;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    z-index: 20; 
+    gap: 3.5rem;
+    z-index: 50; /* Forces the buttons above everything else on the screen */
 }
 
+/* Left Panel's Buttons (Live Matcher Page) */
 .nav-left {
-    left: 49vw; /* Locks exactly inside the right slant */
-    transform: translateY(-50%) rotate(-6deg); 
-    align-items: flex-end;
+    left: 54vw; /* Anchors the base exactly on the outside of the slant */
+    transform: translateY(-50%) rotate(-9deg); /* Matches the slant angle */
+    align-items: flex-start; 
 }
 
+/* Right Panel's Buttons (Architecture Page) */
 .nav-right {
-    right: 49vw; /* Locks exactly inside the left slant */
-    transform: translateY(-50%) rotate(-6deg); 
-    align-items: flex-start;
+    right: 54vw; /* Anchors the base exactly on the outside of the slant */
+    transform: translateY(-50%) rotate(-9deg); /* Matches the slant angle */
+    align-items: flex-end; 
 }
 
 .nav-angled a {
     font-family: "Bangers", sans-serif;
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 1.8rem; 
+    color: #ffeb3b; /* Solid yellow to ensure they pop against the background image */
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.9);
+    font-size: 2.5rem; 
     text-decoration: none;
     transition: all 0.2s ease;
     text-transform: uppercase;
@@ -175,7 +178,7 @@ h1, h2, h3 {
 
 .nav-angled a:hover {
     color: white;
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(-2deg);
 }
 
 /* ====== INNER CONTENT STYLING ====== */
