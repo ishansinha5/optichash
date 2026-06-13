@@ -7,7 +7,7 @@ body, html {
     height: 100%;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    /* FIX: Set to transparent so it doesn't paint over the z-index images */
+    /* Transparent body allows the background images to show through */
     background-color: transparent; 
 }
 
@@ -17,10 +17,10 @@ h1, h2, h3 {
     margin: 0;
 }
 
-/* ====== HOMEPAGE (Restored Blur) ====== */
+/* ====== HOMEPAGE ====== */
 .homepage-bg {
-    background-color: #0f172a; /* Fallback moved here */
-    background-image: url('images/wallpaper_for_home.jpg'); /* Restored relative path */
+    background-color: #0f172a; 
+    background-image: url('/images/wallpaper_for_home.jpg'); 
     background-size: cover;
     background-position: center;
     filter: blur(5px);
@@ -32,10 +32,53 @@ h1, h2, h3 {
     z-index: -1;
 }
 
-/* ====== SUBPAGE BACKGROUND (Unblurred Base) ====== */
+.home-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.home-title {
+    font-size: 6rem;
+    text-shadow: 4px 4px 0px rgba(0,0,0,0.8), -2px -2px 0px rgba(0,0,0,0.8);
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.home-buttons {
+    display: flex;
+    gap: 2rem;
+}
+
+.btn {
+    font-family: "Bangers", sans-serif;
+    font-size: 2.2rem;
+    color: white;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    background-color: rgba(0,0,0,0.6);
+    border: 3px solid white;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ffeb3b;
+    border-color: #ffeb3b;
+    color: black;
+    transform: translateY(-5px);
+}
+
+/* ====== SUBPAGE BACKGROUND ====== */
 .subpage-bg {
-    background-color: #0f172a; /* Fallback moved here */
-    background-image: url('images/wallpaper_for_home.jpg'); /* Restored relative path */
+    background-color: #0f172a; 
+    background-image: url('/images/wallpaper_for_home.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -62,21 +105,17 @@ h1, h2, h3 {
     box-shadow: 0 0 50px rgba(0,0,0,0.9);
 }
 
-/* Recommender Page: Slides in from left */
 .panel-left {
     left: 0;
     clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
     animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    /* Massive right padding prevents text from hitting the menu */
     padding: 2rem 30% 2rem 5%; 
 }
 
-/* About Page: Slides in from right */
 .panel-right {
     right: 0;
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
     animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    /* Massive left padding prevents text from hitting the menu */
     padding: 2rem 5% 2rem 30%; 
 }
 
@@ -97,6 +136,7 @@ h1, h2, h3 {
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    z-index: 20; /* Prevents the shader panel from burying the links */
 }
 
 .nav-left {
@@ -114,7 +154,7 @@ h1, h2, h3 {
 .nav-angled a {
     font-family: "Bangers", sans-serif;
     color: rgba(255, 255, 255, 0.5);
-    font-size: 1.8rem; /* Scaled down so it doesn't overpower the screen */
+    font-size: 1.8rem; 
     text-decoration: none;
     transition: all 0.2s ease;
     text-transform: uppercase;
@@ -127,17 +167,19 @@ h1, h2, h3 {
 
 /* ====== INNER CONTENT STYLING ====== */
 .content-area h1 {
-    font-size: 3.5rem; /* Scaled down */
+    font-size: 3.5rem; 
     margin-bottom: 1rem;
     color: #ffeb3b;
     text-shadow: 2px 2px 0px #000;
 }
+
 .architectural-detail {
     font-size: 1.1rem;
     line-height: 1.6;
     color: #cbd5e1;
     max-width: 550px;
 }
+
 .architectural-detail strong {
     color: white;
 }
@@ -151,6 +193,7 @@ h1, h2, h3 {
     margin-top: 1.5rem;
     max-width: 450px;
 }
+
 .upload-btn {
     display: inline-block;
     background: #ffeb3b;
@@ -162,6 +205,7 @@ h1, h2, h3 {
     cursor: pointer;
     transition: background 0.2s;
 }
+
 .upload-btn:hover {
     background: white;
 }
