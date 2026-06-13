@@ -96,6 +96,8 @@ h1, h2, h3 {
     z-index: -2;
 }
 
+/* ====== THE SLIDING SHADER PANELS (DESKTOP) ====== */
+/* ====== THE SLIDING SHADER PANELS (DESKTOP) ====== */
 .shader-panel {
     position: fixed;
     top: 0;
@@ -120,7 +122,7 @@ h1, h2, h3 {
     left: 0;
     clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
     animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    padding: 0 30% 0 8%;
+    padding: 0 28% 0 6%;
     background-color: rgba(15, 23, 42, 0.95);
 }
 
@@ -128,7 +130,7 @@ h1, h2, h3 {
     right: 0;
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
     animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    padding: 0 8% 0 30%;
+    padding: 0 6% 0 28%;
     background-color: rgba(15, 23, 42, 0.95);
 }
 
@@ -162,7 +164,7 @@ h1, h2, h3 {
    Anchor top-right of button group to that point. */
 .nav-left {
     top: 12vh;
-    right: 35vw;
+    right: 28vw;
     transform: rotate(-14deg);
     transform-origin: top right;
     align-items: flex-end;
@@ -172,7 +174,7 @@ h1, h2, h3 {
    Anchor top-left of button group there. */
 .nav-right {
     top: 12vh;
-    left: 51vw;
+    left: 44vw;
     transform: rotate(-14deg);
     transform-origin: top left;
     align-items: flex-start;
