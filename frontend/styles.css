@@ -115,22 +115,21 @@ h1, h2, h3 {
     padding-bottom: 15vh; 
 }
 
-/* THE MATH FIX: By using 25vh for the bottom point, we force the slant 
-   to be exactly 14 degrees on every monitor size permanently. 
-*/
+/* LEFT PANEL (Engine): Wider at top, narrower at bottom ( / Slant ) */
 .panel-left {
     left: 0;
     clip-path: polygon(0 0, 100% 0, calc(100% - 25vh) 100%, 0 100%);
     animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    padding: 0 18vw 0 6vw; /* Keeps text at a safe, readable width */
+    padding: 0 18vw 0 6vw; /* Keeps text away from the slant */
     background-color: rgba(15, 23, 42, 0.95);
 }
 
+/* RIGHT PANEL (Architecture): Perfectly mirrored! Wider at top, narrower at bottom ( \ Slant ) */
 .panel-right {
     right: 0;
-    clip-path: polygon(25vh 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 25vh 100%);
     animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    padding: 0 6vw 0 18vw; /* Keeps text at a safe, readable width */
+    padding: 0 6vw 0 18vw; /* Keeps text away from the slant */
     background-color: rgba(15, 23, 42, 0.95);
 }
 
@@ -144,7 +143,6 @@ h1, h2, h3 {
     to { transform: translateX(0); }
 }
 
-/* ====== ANGLED NAVIGATION (DESKTOP) ====== */
 /* ====== ANGLED NAVIGATION (DESKTOP) ====== */
 .nav-angled {
     position: fixed;
@@ -177,26 +175,20 @@ h1, h2, h3 {
     transform: scale(1.05);
 }
 
-/* LEFT PANEL (RECOMMENDER) */
+/* LEFT PANEL BUTTONS */
 .nav-left {
-    left: auto !important; /* Nukes any ghost CSS */
-    
-    /* 🛠️ THE NUDGE: Increase this number to push buttons LEFT. Decrease to push RIGHT. */
-    right: 48vw; 
-    
+    left: auto !important; 
+    right: calc(35vw + 12.5vh + 15px); /* Calculates the exact / edge and leaves a 15px gap */
     transform: translateY(-50%) rotate(-14deg); 
     align-items: flex-end; 
     transform-origin: right center; 
 }
 
-/* RIGHT PANEL (ABOUT) */
+/* RIGHT PANEL BUTTONS */
 .nav-right {
-    right: auto !important; /* Nukes any ghost CSS */
-    
-    /* 🛠️ THE NUDGE: Increase this number to push buttons RIGHT. Decrease to push LEFT. */
-    left: 48vw; 
-    
-    transform: translateY(-50%) rotate(-14deg); 
+    right: auto !important; 
+    left: calc(35vw + 12.5vh + 15px); /* Calculates the exact \ edge and leaves a 15px gap */
+    transform: translateY(-50%) rotate(14deg); /* Positive rotation to match the mirrored \ slant! */
     align-items: flex-start; 
     transform-origin: left center; 
 }
