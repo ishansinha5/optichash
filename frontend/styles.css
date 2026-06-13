@@ -7,7 +7,6 @@ body, html {
     height: 100%;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    /* Transparent body allows the background images to show through */
     background-color: transparent; 
 }
 
@@ -90,7 +89,7 @@ h1, h2, h3 {
     z-index: -2;
 }
 
-/* ====== THE SLIDING SHADER PANELS ====== */
+/* ====== THE SLIDING SHADER PANELS (DESKTOP) ====== */
 .shader-panel {
     position: fixed;
     top: 0;
@@ -109,14 +108,14 @@ h1, h2, h3 {
     left: 0;
     clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
     animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    padding: 2rem 30% 2rem 5%; 
+    padding: 2rem 22% 2rem 5%; /* Adjusted to let text stretch further */
 }
 
 .panel-right {
     right: 0;
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
     animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    padding: 2rem 5% 2rem 30%; 
+    padding: 2rem 5% 2rem 22%; /* Adjusted to let text stretch further */
 }
 
 @keyframes slideInLeft {
@@ -129,24 +128,24 @@ h1, h2, h3 {
     to { transform: translateX(0); }
 }
 
-/* ====== ANGLED NAVIGATION ====== */
+/* ====== ANGLED NAVIGATION (DESKTOP) ====== */
 .nav-angled {
     position: absolute;
     top: 50%;
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    z-index: 20; /* Prevents the shader panel from burying the links */
+    z-index: 20; 
 }
 
 .nav-left {
-    right: 18%; /* Pushed inward to escape the diagonal slice */
+    right: 18%;
     transform: translateY(-50%) rotate(-6deg); 
     align-items: flex-end;
 }
 
 .nav-right {
-    left: 18%; /* Pushed inward to escape the diagonal slice */
+    left: 18%;
     transform: translateY(-50%) rotate(-6deg); 
     align-items: flex-start;
 }
@@ -168,23 +167,22 @@ h1, h2, h3 {
 /* ====== INNER CONTENT STYLING ====== */
 .content-area h1 {
     font-size: 3.5rem; 
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: #ffeb3b;
     text-shadow: 2px 2px 0px #000;
 }
 
 .architectural-detail {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     line-height: 1.6;
     color: #cbd5e1;
-    max-width: 550px;
+    max-width: 100%; /* Stretches to the edge of the padding */
 }
 
 .architectural-detail strong {
     color: white;
 }
 
-/* Custom Scanner Box */
 .scanner-container {
     border: 2px dashed rgba(255, 255, 255, 0.3);
     background: rgba(0, 0, 0, 0.4);
@@ -208,4 +206,46 @@ h1, h2, h3 {
 
 .upload-btn:hover {
     background: white;
+}
+
+/* ====== MOBILE OVERRIDE ====== */
+@media (max-width: 768px) {
+    .shader-panel {
+        width: 100vw; /* Fills the whole screen */
+        clip-path: none; /* Removes the slant */
+        padding: 100px 20px 30px 20px; /* Space at top for nav links */
+        align-items: center;
+        text-align: center;
+        overflow-y: auto;
+    }
+    
+    .nav-angled {
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%) !important; /* Forces center, removes rotation */
+        flex-direction: row; /* Side-by-side links */
+        width: 100%;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+    
+    .content-area h1 {
+        font-size: 2.8rem;
+    }
+    
+    .architectural-detail {
+        text-align: left; /* Keeps paragraph text readable */
+        font-size: 1.05rem;
+    }
+    
+    .home-buttons {
+        flex-direction: column;
+        width: 90%;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
 }

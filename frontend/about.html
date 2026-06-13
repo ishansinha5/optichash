@@ -21,18 +21,18 @@
       <h1>SYSTEM ARCHITECTURE</h1>
       
       <p class="architectural-detail">
-        <strong>The "Green AI" Constraint:</strong><br>
-        Standard image recognition burns massive amounts of cloud compute. This engine was built as an exercise in hardware-aware constraints.
+        <strong>The "Optimized AI" Constraint:</strong><br>
+        It is easy to build an image classifier if you have unlimited cloud credits and heavy GPU clusters. This project was an exercise in artificial constraints. I wanted to build a B2B-style microservice architecture capable of running entirely on constrained edge hardware (or a standard laptop CPU) while maintaining high accuracy.
       </p>
 
       <p class="architectural-detail" style="margin-top: 1.5rem;">
-        <strong>1. Spatial Caching (C++):</strong><br>
-        Images are evaluated instantly by a native C++ Perceptual Hash bouncer. Known covers skip machine learning entirely.
+        <strong>1. Spatial Caching via C++:</strong><br>
+        Machine learning is expensive; simple math is cheap. I built a native C++ layer that intercepts requests and hashes images at the byte level. By checking these hashes against a PostGIS spatial database, the system creates a high-speed caching layer that shields the heavier PyTorch models from duplicate traffic.
       </p>
 
       <p class="architectural-detail" style="margin-top: 1.5rem;">
         <strong>2. Quantized Edge Compute (PyTorch):</strong><br>
-        The fallback vision model uses a <i>MobileNetV3</i> backbone heavily pruned and quantized down to 8-bit integers (INT8), running localized inference at lightning speeds without requiring a GPU.
+        When the C++ cache misses, the request is handled by a Python FastAPI endpoint running a vision model. Instead of a massive architecture, it uses a lightweight <i>MobileNetV3</i> backbone. By aggressively pruning the weights and applying INT8 Dynamic Quantization (compressing 32-bit floating-point math down to 8-bit integers), the model executes near-instant inference with a fraction of standard RAM utilization.
       </p>
     </div>
 
