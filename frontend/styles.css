@@ -95,6 +95,7 @@ h1, h2, h3 {
     height: 100%;
     z-index: -2;
 }
+/* ====== THE SLIDING SHADER PANELS (DESKTOP) ====== */
 .shader-panel {
     position: fixed;
     top: 0;
@@ -114,21 +115,22 @@ h1, h2, h3 {
     padding-bottom: 15vh; 
 }
 
-/* Increased inner padding to 38% so text never touches the internal buttons */
-/* Increased inner padding massively to 40% so text never collides with the buttons */
+/* THE MATH FIX: By using 25vh for the bottom point, we force the slant 
+   to be exactly 14 degrees on every monitor size permanently. 
+*/
 .panel-left {
     left: 0;
-    clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 25vh) 100%, 0 100%);
     animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    padding: 0 40% 0 6%;
+    padding: 0 18vw 0 6vw; /* Keeps text at a safe, readable width */
     background-color: rgba(15, 23, 42, 0.95);
 }
 
 .panel-right {
     right: 0;
-    clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(25vh 0, 100% 0, 100% 100%, 0 100%);
     animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    padding: 0 6% 0 40%;
+    padding: 0 6vw 0 18vw; /* Keeps text at a safe, readable width */
     background-color: rgba(15, 23, 42, 0.95);
 }
 
@@ -150,22 +152,48 @@ h1, h2, h3 {
     flex-direction: column;
     gap: 1.2rem;
     z-index: 20;
-    pointer-events: none;
 }
 
-/* LEFT PANEL: Anchors the RIGHT side of the buttons exactly to the slant */
+.nav-angled a {
+    font-family: "Bangers", sans-serif;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.8rem; 
+    text-decoration: none;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    padding: 10px 25px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    white-space: nowrap;
+}
+
+.nav-angled a:hover {
+    color: #ffeb3b;
+    border-color: #ffeb3b;
+    background: rgba(255, 235, 59, 0.15);
+    transform: scale(1.05);
+}
+
+/* LEFT PANEL (RECOMMENDER): 
+   We mathematically calculate the exact center of the 14-degree slant 
+   and add 1rem of padding so it hovers right on the edge perfectly.
+*/
 .nav-left {
-    right: 44.5vw; 
-    transform: translateY(-50%) rotate(-14deg);
-    align-items: flex-end;
+    right: calc(35vw + 12.5vh + 1rem); 
+    transform: translateY(-50%) rotate(-14deg); 
+    align-items: flex-end; 
     transform-origin: right center; 
 }
 
-/* RIGHT PANEL: Anchors the LEFT side of the buttons exactly to the slant */
+/* RIGHT PANEL (ABOUT): 
+   Mirrors the math of the left panel to snap exactly to the slant.
+*/
 .nav-right {
-    left: 44.5vw; 
-    transform: translateY(-50%) rotate(-14deg);
-    align-items: flex-start;
+    left: calc(35vw + 12.5vh + 1rem); 
+    transform: translateY(-50%) rotate(-14deg); 
+    align-items: flex-start; 
     transform-origin: left center; 
 }
 
