@@ -3,38 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comic Scanner Demo</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦹</text></svg>">
+  <title>OpticHash | Scanner</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Savate:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
-<body class="recommender-page">
-  <div class="nav-bar">
-    <a href="index.html">Home</a>
-    <a href="recommender.html">Live Matcher</a>
-    <a href="about.html">About</a>
-  </div>
+<body>
   
-  <h1>💥 Live Cover Matcher 🗯</h1>
-  
-  <div class="scanner-container" style="max-width: 400px; margin: 2rem auto; padding: 1rem;">
-    <label for="camera-upload" class="homepage-button" style="cursor: pointer; display: block; margin-bottom: 1.5rem;">
-      📸 Open Camera / Scan Cover
-    </label>
-    <input type="file" id="camera-upload" accept="image/*" capture="environment" style="display: none;" onchange="previewAndUpload(event)">
+  <div class="shader-panel panel-left">
     
-    <div id="demo-preview-zone" style="margin-top: 1rem; min-height: 200px; border: 3px dashed white; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-      <p id="preview-placeholder" style="color: white; font-weight: bold;">Captured cover preview will appear here</p>
-      <img id="preview-img" style="width: 100%; display: none; object-fit: contain;" />
+    <div class="nav-angled nav-left">
+      <a href="index.html">Home</a>
+      <a href="recommender.html" class="active">Live Matcher</a>
+      <a href="about.html">Architecture</a>
     </div>
 
-    <div id="scan-results" style="margin-top: 1.5rem; font-family: 'Bangers', sans-serif; font-size: 2rem; color: #ffeb3b; text-shadow: 2px 2px 0px #000;"></div>
-    <p id="route-indicator" class="architectural-detail" style="display: none; margin-top: 1rem; font-size: 1rem;"></p>
-  </div>
+    <div class="content-area">
+      <h1>LIVE MATCH ENGINE</h1>
+      <p class="architectural-detail">
+        Upload a messy environment photo. The C++ <strong>pHash</strong> cache intercepts it. If it's a cache miss, the <strong>INT8 Quantized PyTorch</strong> model executes the zero-shot embedding.
+      </p>
+      
+      <div class="scanner-container">
+        <label for="camera-upload" class="upload-btn">
+          📸 OPEN CAMERA
+        </label>
+        <input type="file" id="camera-upload" accept="image/*" capture="environment" style="display: none;" onchange="previewAndUpload(event)">
+        
+        <div id="demo-preview-zone" style="margin-top: 1.5rem; min-height: 180px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+          <p id="preview-placeholder" style="color: #64748b; font-weight: 600;">Preview rendering zone</p>
+          <img id="preview-img" style="width: 100%; display: none; object-fit: contain; border-radius: 8px;" />
+        </div>
 
-  <p class="architectural-detail">
-    <strong>How it works (Phase 2):</strong> I am currently rebuilding the ML pipeline from the ground up. The original iteration was a collaborative filtering model trained on a massive dataset I scraped from Goodreads and Amazon[cite: 19]. The new architecture is built around compute optimization[cite: 19]. I'm deploying a PyTorch vision model wrapped in a Python FastAPI endpoint[cite: 19]. To keep things 'Green' and avoid burning through GPU cycles, I engineered a native C++ perceptual hashing (pHash) layer that acts as a bouncer[cite: 19]. When you upload a comic cover, C++ hashes it instantly at the byte level and checks the PostgreSQL cache[cite: 19]. If it's a known image, it skips the heavy Python inference entirely[cite: 19]. Honestly, it's slightly overkill for a simple comic app, but it's a great sandbox for learning enterprise-grade efficiency[cite: 19].
-  </p>
+        <div id="scan-results" style="margin-top: 1rem; font-family: 'Bangers', sans-serif; font-size: 2.2rem; color: #ffeb3b; text-shadow: 2px 2px 0px #000;"></div>
+        <p id="route-indicator" class="architectural-detail" style="display: none; margin-top: 0.5rem; color: #4ade80;"></p>
+      </div>
+    </div>
+
+  </div>
 
   <script src="scanner.js"></script>
 </body>

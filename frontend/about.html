@@ -3,26 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About the Project</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦹</text></svg>">
+  <title>OpticHash | Architecture</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Savate:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
-<body class="about-page">
-  <div class="nav-bar">
-    <a href="index.html">Home</a>
-    <a href="recommender.html">Live Matcher</a>
-    <a href="about.html">About</a>
+<body>
+
+  <div class="shader-panel panel-right">
+
+    <div class="nav-angled nav-right">
+      <a href="index.html">Home</a>
+      <a href="recommender.html">Live Matcher</a>
+      <a href="about.html" class="active">Architecture</a>
+    </div>
+
+    <div class="content-area">
+      <h1>SYSTEM ARCHITECTURE</h1>
+      
+      <p class="architectural-detail">
+        <strong>The "Green AI" Constraint:</strong><br>
+        Standard image recognition burns massive amounts of cloud compute. This engine was built as an exercise in hardware-aware constraints.
+      </p>
+
+      <p class="architectural-detail" style="margin-top: 1.5rem;">
+        <strong>1. Spatial Caching (C++):</strong><br>
+        Images are evaluated instantly by a native C++ Perceptual Hash bouncer. Known covers skip machine learning entirely.
+      </p>
+
+      <p class="architectural-detail" style="margin-top: 1.5rem;">
+        <strong>2. Quantized Edge Compute (PyTorch):</strong><br>
+        The fallback vision model uses a <i>MobileNetV3</i> backbone heavily pruned and quantized down to 8-bit integers (INT8), running localized inference at lightning speeds without requiring a GPU.
+      </p>
+    </div>
+
   </div>
-  
-  <h1>About This Project</h1>
-  
-  <section class="architectural-detail">
-    <p><strong>The Mission:</strong> Skipping the big-box retailers. This distributed microservices platform connects readers with local comic shops, tracks weekly release schedules, and offers smart recommendations[cite: 17]. Built to explore compute-optimized "Green AI" and spatial routing architecture—and to scientifically ensure I never miss a pull day[cite: 17].</p>
 
-    <p><strong>The Architecture:</strong> Under the hood, this bypasses the standard, bloated API calls[cite: 17]. It runs on a containerized WSL ecosystem, utilizing a native C++ Perceptual Hashing (pHash) layer as a "bouncer[cite: 17]." By checking byte-level hashes against a PostGIS spatial database, it aggressively caches image data before it ever hits the Python ML model[cite: 17]. It's designed to save massive amounts of expensive GPU cycles while maintaining lightning-fast frontend lookups[cite: 17].</p>
-
-    <p><strong>The Developer:</strong> Built for the community, by an engineer who is slightly obsessed with efficient backend infrastructure[cite: 17].</p>
-  </section>
 </body>
 </html>
