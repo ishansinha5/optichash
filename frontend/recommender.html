@@ -18,7 +18,9 @@
   <div class="shader-panel panel-left">
     <div class="content-area">
       
-      <div class="scanner-container" style="margin-bottom: 2rem;">
+      <h1>LIVE MATCH ENGINE</h1>
+
+      <div class="scanner-container">
         <div class="scanner-buttons">
           <label class="upload-btn mobile-camera-only">
             📸 OPEN CAMERA
@@ -45,8 +47,7 @@
         </a>
       </div>
 
-      <h1>LIVE MATCH ENGINE</h1>
-      <p class="architectural-detail">
+      <p class="architectural-detail" style="margin-top: 2rem;">
         This scanner represents the front-end of a hardware-aware computer vision pipeline optimized for edge deployments. The core focus is efficient system routing and sustainable execution. 
         <br><br>
         When a photo is submitted, the payload is first routed to a native C++ microservice that calculates a geometric Perceptual Hash (pHash). If it finds an exact spatial match in the local cache, it returns the requested metadata instantly without invoking heavy compute.
