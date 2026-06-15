@@ -1,15 +1,15 @@
 import torch
 import os
 from core.model import GreenComicVision
-# Import the modern torchao library
-from torchao.quantization import quantize_, int8_dynamic_activation_int8_weight
+# Import the modern torchao Config API
+from torchao.quantization import quantize_, Int8DynamicActivationInt8WeightConfig
 
 def execute_green_ai_crunch(fp32_path="weights/comic_vision_fp32.pth", int8_path="weights/comic_vision_int8.pth"):
     print("Initiating Green AI Compression Sequence...")
     
     device = torch.device("cpu")
     
-    if not os.path.exists(fp32_path):
+    if (not os.path.exists(fp32_path)):
         print(f"Error: {fp32_path} not found. You must run train.py first!")
         return
 
@@ -19,9 +19,9 @@ def execute_green_ai_crunch(fp32_path="weights/comic_vision_fp32.pth", int8_path
     
     print("Heavy FP32 Model loaded. Applying INT8 Dynamic Quantization...")
 
-    # The Modern 2026 Crunch (torchao)
-    # This applies INT8 dynamic activation and weight quantization natively
-    quantize_(model, int8_dynamic_activation_int8_weight())
+    # The Modern 2026 Crunch (torchao 0.17.0+)
+    # This applies INT8 dynamic activation and weight quantization natively using the new Config class
+    quantize_(model, Int8DynamicActivationInt8WeightConfig())
     
     torch.save(model.state_dict(), int8_path)
     print("Quantization complete. INT8 Model saved.")
@@ -38,5 +38,5 @@ def execute_green_ai_crunch(fp32_path="weights/comic_vision_fp32.pth", int8_path
     print(f" Total Compute Reduction:  {reduction:.1f}%")
     print("="*40 + "\n")
 
-if __name__ == "__main__":
+if (__name__ == "__main__"):
     execute_green_ai_crunch()
