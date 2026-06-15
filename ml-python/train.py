@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from dataset import get_loaders
-from model import GreenComicVision
+from core.model import GreenComicVision
 
 def train_model(data_dir, num_epochs=10):
     # 1. Hardware Awareness: Use GPU if available, fallback to CPU
