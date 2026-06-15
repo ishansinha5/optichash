@@ -58,17 +58,35 @@ async def process_comic(file: UploadFile = File(...)):
         input_tensor = preprocess(image).unsqueeze(0).to(device)
         
         # 3. Execute Neural Network Inference
-        with torch.no_grad():  # CRITICAL: Disables gradient tracking to save memory/CPU
+        # 3. Execute Neural Network Inference
+        with torch.no_grad():
             outputs = model(input_tensor)
-            _, predicted = torch.max(outputs, 1)
-            predicted_id = predicted.item()
+            
+            # Convert raw outputs (logits) to percentages (probabilities)
+            probabilities = torch.nn.functional.softmax(outputs[0], dim=0)
+            
+            # Find the highest probability and its corresponding class ID
+            confidence, predicted_id = torch.max(probabilities, 0)
+            
+            confidence_score = confidence.item()
+            predicted_id = predicted_id.item()
 
-        # 4. Return the exact JSON contract your architecture expects
+        # Set a strict threshold (e.g., 75% certainty required)
+        THRESHOLD = 0.75
+        
+        if (confidence_score < THRESHOLD):
+            return {
+                "status": "error",
+                "message": f"Low confidence match ({confidence_score:.2f}). Please ensure the cover is clearly visible."
+            }
+
+        # If it passes the threshold, return the success contract
         return {
             "status": "success",
             "optimization_route": "inference_python",
             "predicted_id": predicted_id,
-            "compute_cycles_saved": 0 # We will update this after INT8 Quantization
+            "confidence": f"{confidence_score * 100:.1f}%",
+            "compute_cycles_saved": 0
         }
         
     except Exception as e:
