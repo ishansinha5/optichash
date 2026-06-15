@@ -1,39 +1,31 @@
 import torch
 import os
 from core.model import GreenComicVision
+# Import the modern torchao library
+from torchao.quantization import quantize_, int8_dynamic_activation_int8_weight
 
 def execute_green_ai_crunch(fp32_path="weights/comic_vision_fp32.pth", int8_path="weights/comic_vision_int8.pth"):
     print("Initiating Green AI Compression Sequence...")
     
-    # 1. Hardware Check: Quantization MUST happen on the CPU. 
-    # INT8 math is optimized for standard edge-device processors.
     device = torch.device("cpu")
     
-    # 2. Load the heavy, fully trained model
     if not os.path.exists(fp32_path):
         print(f"Error: {fp32_path} not found. You must run train.py first!")
         return
 
     model = GreenComicVision(num_classes=6)
     model.load_state_dict(torch.load(fp32_path, map_location=device))
-    model.eval() # Lock the weights
+    model.eval() 
     
     print("Heavy FP32 Model loaded. Applying INT8 Dynamic Quantization...")
 
-    # 3. The Crunch (Dynamic Quantization)
-    # We target the most computationally expensive layers (Linear/Dense).
-    # This converts their 32-bit float math into highly efficient 8-bit integers.
-    quantized_model = torch.quantization.quantize_dynamic(
-        model, 
-        {torch.nn.Linear}, 
-        dtype=torch.qint8
-    )
+    # The Modern 2026 Crunch (torchao)
+    # This applies INT8 dynamic activation and weight quantization natively
+    quantize_(model, int8_dynamic_activation_int8_weight())
     
-    # 4. Save the optimized micro-model
-    torch.save(quantized_model.state_dict(), int8_path)
+    torch.save(model.state_dict(), int8_path)
     print("Quantization complete. INT8 Model saved.")
 
-    # 5. Calculate and print the hard metrics for the pitch
     fp32_size = os.path.getsize(fp32_path) / (1024 * 1024)
     int8_size = os.path.getsize(int8_path) / (1024 * 1024)
     reduction = ((fp32_size - int8_size) / fp32_size) * 100
