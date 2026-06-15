@@ -8,11 +8,14 @@ def get_data_transformers():
     train_transform = v2.Compose([
         v2.Resize((224, 224)), # Crush massive phone photos to Green AI standard size
         v2.RandomRotation(degrees=15),
-        v2.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.1),
+        v2.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.2), # Fortified against harsh room lighting
         v2.RandomPerspective(distortion_scale=0.15, p=0.5),
         v2.ToImage(),
         v2.ToDtype(torch.float32, scale=True),
-        v2.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        v2.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+        # NEW: The Occlusion Simulator. Randomly deletes up to 25% of the image 
+        # to force the model to identify the comic even when a hand is blocking it.
+        v2.RandomErasing(p=0.5, scale=(0.05, 0.25), value='random')
     ])
 
     # Validation transforms ONLY resize and normalize (The clean final exam)
