@@ -1,2 +1,6 @@
 .vercel
 .venv/
+# Ignore training data and massive archive files
+ml-python/data/
+*.zip
+*.Zone.Identifier
