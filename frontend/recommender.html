@@ -17,16 +17,8 @@
 
   <div class="shader-panel panel-left">
     <div class="content-area">
-      <h1>LIVE MATCH ENGINE</h1>
-      <p class="architectural-detail">
-        This scanner represents the front-end of a hardware-aware computer vision pipeline optimized for edge deployments. The core focus is efficient system routing and sustainable execution. 
-        <br><br>
-        When a photo is submitted, the payload is first routed to a native C++ microservice that calculates a geometric Perceptual Hash (pHash). If it finds an exact spatial match in the local cache, it returns the requested metadata instantly without invoking heavy compute.
-        <br><br>
-        If the cover is heavily obscured, distorted, or unrecognized by the cache, the system gracefully falls back to a highly quantized INT8 PyTorch engine. This neural network has been specifically trained on extreme edge cases—including harsh lighting glare, deep shadows, steep viewing angles, and real-world background messes—ensuring high-accuracy recognition in everyday environments.
-      </p>
       
-      <div class="scanner-container">
+      <div class="scanner-container" style="margin-bottom: 2rem;">
         <div class="scanner-buttons">
           <label class="upload-btn mobile-camera-only">
             📸 OPEN CAMERA
@@ -52,6 +44,15 @@
           Link to League of Comic Geeks page
         </a>
       </div>
+
+      <h1>LIVE MATCH ENGINE</h1>
+      <p class="architectural-detail">
+        This scanner represents the front-end of a hardware-aware computer vision pipeline optimized for edge deployments. The core focus is efficient system routing and sustainable execution. 
+        <br><br>
+        When a photo is submitted, the payload is first routed to a native C++ microservice that calculates a geometric Perceptual Hash (pHash). If it finds an exact spatial match in the local cache, it returns the requested metadata instantly without invoking heavy compute.
+        <br><br>
+        If the cover is heavily obscured, distorted, or unrecognized by the cache, the system gracefully falls back to a highly quantized INT8 PyTorch engine. This neural network has been specifically trained on extreme edge cases—including harsh lighting glare, deep shadows, steep viewing angles, and real-world background messes—ensuring high-accuracy recognition in everyday environments.
+      </p>
     </div>
   </div>
 
