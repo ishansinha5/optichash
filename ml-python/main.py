@@ -3,7 +3,7 @@ import torch
 from fastapi import FastAPI, UploadFile, File
 from PIL import Image
 from torchvision.transforms import v2
-from model import GreenComicVision
+from core.model import GreenComicVision
 import uvicorn
 
 app = FastAPI()
