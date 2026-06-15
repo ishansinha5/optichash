@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 from torchvision.transforms import v2
 from core.model import GreenComicVision
+import uvicorn
 # Import torchao configuration tools
 from torchao.quantization import quantize_, Int8DynamicActivationInt8WeightConfig
 
