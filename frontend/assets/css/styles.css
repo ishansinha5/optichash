@@ -201,7 +201,7 @@ h1, h2, h3 {
     line-height: 1.6;
     color: #cbd5e1;
     max-width: 100%;
-    text-align: justify; 
+    text-align: left; 
 }
 
 .architectural-detail strong {
