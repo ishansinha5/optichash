@@ -1,31 +1,43 @@
 import io
 import torch
 from fastapi import FastAPI, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 from torchvision.transforms import v2
 from core.model import GreenComicVision
-import uvicorn
+# Import torchao configuration tools
+from torchao.quantization import quantize_, Int8DynamicActivationInt8WeightConfig
 
 app = FastAPI()
 
-# 1. Hardware Awareness: Use GPU if available, fallback to CPU
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# Enable CORS so your local frontend server can communicate with your backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows local testing servers to connect
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+device = torch.device("cpu")
 print(f"Inference Engine booting on: {device}")
 
-# 2. Initialize the Green AI Model
-model = GreenComicVision(num_classes=5)
+# 1. Initialize the structure matching your 6-class architecture
+model = GreenComicVision(num_classes=6)
 
-# Load the true weights trained from your friends' chaos pictures.
-# Wrapped in a try/except so the container doesn't crash before you run train.py!
+# 2. Inject the torchao layer shell BEFORE loading the weights
+quantize_(model, Int8DynamicActivationInt8WeightConfig())
+
+# 3. Load your ultra-efficient INT8 model weights securely
+weights_path = "weights/comic_vision_int8.pth"
 try:
-    model.load_state_dict(torch.load("comic_vision_fp32.pth", map_location=device))
-    print("SUCCESS: Loaded trained FP32 weights.")
-except FileNotFoundError:
-    print("WARNING: comic_vision_fp32.pth not found. Using untrained weights until train.py is executed.")
+    model.load_state_dict(torch.load(weights_path, map_location=device))
+    print(f"SUCCESS: Loaded optimized Green AI weights from {weights_path}")
+except Exception as e:
+    print(f"ERROR loading weights: {e}")
 
 model.to(device)
-model.eval()  # CRITICAL: Locks the network weights and turns off training behaviors
-
+model.eval()
 # 3. The Green AI Preprocessing Pipeline
 preprocess = v2.Compose([
     v2.Resize((224, 224)),
