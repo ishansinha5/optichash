@@ -45,8 +45,26 @@ async function previewAndUpload(event) {
                 linkElement.href = data.url;
                 linkElement.style.display = "block";
             }
-        } else {
-            resultsDiv.innerText = "Match Failed. Try cleaner lighting.";
+        } else if (data.status === "error") {
+            let errorImageHtml = "";
+            
+            // Check if the backend threw the threshold rejection (Low confidence)
+            if (data.message.includes("Low confidence")) {
+                errorImageHtml = `<img src="assets/images/confusedspidey.jpg" alt="Confused Spider-Man" style="max-width: 180px; border-radius: 8px; margin-bottom: 15px; border: 2px solid #dc3545;"><br>`;
+            } 
+            // Check if the backend successfully recognized it as an invalid comic (Junk class)
+            else if (data.message.includes("generic background noise")) {
+                errorImageHtml = `<img src="assets/images/detectivechimp.jpg" alt="Detective Chimp" style="max-width: 180px; border-radius: 8px; margin-bottom: 15px; border: 2px solid #facc15;"><br>`;
+                // Override the backend message with something more user-friendly
+                data.message = "Clear scan, but this comic is not in our authorized database!";
+            }
+
+            // Render the image and the error text to the screen
+            resultsDiv.innerHTML = `${errorImageHtml}<span style="color: #dc3545;">${data.message}</span>`;
+            
+            // Hide the LOCG link and route indicator on errors
+            routeIndicator.style.display = "none";
+            linkElement.style.display = "none";
         }
     } catch (error) {
         console.error("Scanning communication breakdown:", error);
