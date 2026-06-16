@@ -24,8 +24,8 @@ async function previewAndUpload(event) {
     formData.append("file", file);
 
     try {
-        // CRITICAL FIX: Explicitly target your local FastAPI endpoint
-        const response = await fetch("http://localhost:8000/process", {
+        // Pointing to the live cloud Edge Engine
+        const response = await fetch("https://ishansinha05-optichash-engine.hf.space/process", {
             method: "POST",
             body: formData
         });
@@ -35,7 +35,7 @@ async function previewAndUpload(event) {
 
         if (data.status === "success") {
             // Display title if available, otherwise display the raw model class ID
-            const matchName = data.title !== undefined ? data.title : "Class ID " + data.predicted_id;
+            const matchName = (data.title !== undefined) ? data.title : "Class ID " + data.predicted_id;
             resultsDiv.innerText = " MATCH FOUND: " + matchName;
             
             routeIndicator.innerText = "Optimization Route: " + data.optimization_route.toUpperCase() + "\nCompute Footprint Saved: " + data.compute_cycles_saved;
