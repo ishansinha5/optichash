@@ -33,6 +33,15 @@
         <strong>2. Machine Learning & Edge Intelligence:</strong><br>
         When a cache miss occurs, the system triggers the Machine Learning pipeline. The payload is forwarded to a Python FastAPI endpoint running a PyTorch vision model. To strictly maintain optimization, the system utilizes a lightweight <i>MobileNetV3</i> backbone. By aggressively pruning weights and applying INT8 Dynamic Quantization (compressing 32-bit floating-point parameters down to highly efficient 8-bit integers), the model achieves near-instant inference with significantly reduced memory utilization and power draw.
       </p>
+
+      <div class="credits-block" style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #333;">
+        <h3 style="color: #FFD700; font-size: 1.1em; text-transform: uppercase;">Project Credits</h3>
+        <p style="color: #ccc; font-size: 0.95em; line-height: 1.6;">
+          Core architecture, deep learning models, and backend routing developed by <strong>[Your Name]</strong>.<br>
+          Special thanks to <strong>Aidan P.</strong> and <strong>Decagon</strong> for their invaluable contributions to dataset engineering, edge-case testing protocols, and frontend web deployment.
+        </p>
+      </div>
+
     </div>
   </div>
 
