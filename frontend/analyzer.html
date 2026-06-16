@@ -40,21 +40,21 @@
         </details>
 
         <details style="text-align: center; cursor: pointer; color: #888;">
-            <summary style="font-weight: bold; outline: none;">View Scanning Examples</summary>
+            <summary style="font-weight: bold; outline: none; color: #FFD700;">View Scanning Examples</summary>
             <div style="display: flex; justify-content: center; gap: 15px; margin-top: 15px; flex-wrap: wrap;">
-                <div class="example-card">
+                <div class="example-card" onclick="openScanModal('assets/images/good_scan_1.jpg', '✔️ Excellent framing, crisp line contrast, and uniform, indirect lighting with no high-intensity glare hotspots.')" style="cursor: zoom-in;">
                     <img src="assets/images/good_scan_1.jpg" alt="Good Scan" style="height: 120px; width: auto; border: 2px solid #28a745; border-radius: 8px;">
                     <p style="color: #28a745; font-size: 0.8em; margin-top: 5px; font-weight: bold;">✔️ Good</p>
                 </div>
-                <div class="example-card">
+                <div class="example-card" onclick="openScanModal('assets/images/good_scan_2.jpg', '✔️ Flat geometric orientation where the entire cover area fills the frame, maximizing keypoint extraction.')" style="cursor: zoom-in;">
                     <img src="assets/images/good_scan_2.jpg" alt="Good Scan" style="height: 120px; width: auto; border: 2px solid #28a745; border-radius: 8px;">
                     <p style="color: #28a745; font-size: 0.8em; margin-top: 5px; font-weight: bold;">✔️ Good</p>
                 </div>
-                <div class="example-card">
+                <div class="example-card" onclick="openScanModal('assets/images/bad_scan_1.jpg', '❌ Severe physical occlusion caused by fingers blocking structural line art elements along the primary border layout.')" style="cursor: zoom-in;">
                     <img src="assets/images/bad_scan_1.jpg" alt="Bad Scan" style="height: 120px; width: auto; border: 2px solid #dc3545; border-radius: 8px;">
                     <p style="color: #dc3545; font-size: 0.8em; margin-top: 5px; font-weight: bold;">❌ Obscured</p>
                 </div>
-                <div class="example-card">
+                <div class="example-card" onclick="openScanModal('assets/images/bad_scan_2.jpg', '❌ High-intensity environmental lighting glare reflecting directly off the gloss coat, washing out color values.')" style="cursor: zoom-in;">
                     <img src="assets/images/bad_scan_2.jpg" alt="Bad Scan" style="height: 120px; width: auto; border: 2px solid #dc3545; border-radius: 8px;">
                     <p style="color: #dc3545; font-size: 0.8em; margin-top: 5px; font-weight: bold;">❌ Noisy</p>
                 </div>
@@ -99,6 +99,36 @@
       </p>
     </div>
   </div>
+
+  <div id="scan-inspector-modal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 20px;" onclick="closeScanModal()">
+      <div style="background-color: #111; max-width: 800px; width: 100%; border: 1px solid #333; border-radius: 12px; display: flex; flex-direction: row; flex-wrap: wrap; overflow: hidden; position: relative; cursor: default;" onclick="event.stopPropagation()">
+          <span style="position: absolute; top: 10px; right: 15px; color: #888; font-size: 28px; font-weight: bold; cursor: pointer;" onclick="closeScanModal()">&times;</span>
+          <div style="flex: 1 1 400px; background: #000; display: flex; align-items: center; justify-content: center; padding: 10px;">
+              <img id="modal-target-image" src="" alt="Enlarged Scan View" style="max-height: 70vh; max-width: 100%; object-fit: contain; border-radius: 4px;">
+          </div>
+          <div style="flex: 1 1 300px; padding: 30px; display: flex; align-items: center; background: #111; border-left: 1px solid #222;">
+              <p id="modal-target-blurb" style="color: #eee; font-size: 1.05em; line-height: 1.6; margin: 0; font-family: sans-serif;"></p>
+          </div>
+      </div>
+  </div>
+
+  <script>
+    function openScanModal(imageSrc, analysisText) {
+      const modalElement = document.getElementById("scan-inspector-modal");
+      if (modalElement) {
+        document.getElementById("modal-target-image").src = imageSrc;
+        document.getElementById("modal-target-blurb").innerText = analysisText;
+        modalElement.style.display = "flex";
+      }
+    }
+
+    function closeScanModal() {
+      const modalElement = document.getElementById("scan-inspector-modal");
+      if (modalElement) {
+        modalElement.style.display = "none";
+      }
+    }
+  </script>
 
   <script src="assets/js/scanner.js"></script>
 </body>
