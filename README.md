@@ -72,3 +72,8 @@ This entire stack is designed to be fully reproducible across environments. You 
 3. **Orchestrate the Container Cluster:** Run the environment cluster using Docker Compose:
    ```bash
    docker-compose up --build
+
+4. **Verify Endpoint Status: **
+- Frontend Application Portal: http://localhost:3000
+- Java API Gateway Endpoint: http://localhost:8080
+- Python Deep Learning Inference Space: http://localhost:7860
