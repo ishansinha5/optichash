@@ -49,12 +49,13 @@ async function previewAndUpload(event) {
             let errorImageHtml = "";
             
             // Check if the backend threw the threshold rejection (Low confidence)
+            // Check if the backend threw the threshold rejection (Low confidence)
             if (data.message.includes("Low confidence")) {
-                errorImageHtml = `<img src="assets/images/confusedspidey.jpg" alt="Confused Spider-Man" style="max-width: 180px; border-radius: 8px; margin-bottom: 15px; border: 2px solid #dc3545;"><br>`;
+                errorImageHtml = `<img src="assets/images/confusedspidey.jpg" alt="Confused Spider-Man" style="display: block; margin: 0 auto 15px auto; max-width: 180px; border-radius: 8px; border: 2px solid #dc3545;"><br>`;
             } 
             // Check if the backend successfully recognized it as an invalid comic (Junk class)
             else if (data.message.includes("generic background noise")) {
-                errorImageHtml = `<img src="assets/images/detectivechimp.jpg" alt="Detective Chimp" style="max-width: 180px; border-radius: 8px; margin-bottom: 15px; border: 2px solid #facc15;"><br>`;
+                errorImageHtml = `<img src="assets/images/detectivechimp.jpg" alt="Detective Chimp" style="display: block; margin: 0 auto 15px auto; max-width: 180px; border-radius: 8px; border: 2px solid #facc15;"><br>`;
                 // Override the backend message with something more user-friendly
                 data.message = "Clear scan, but this comic is not in our authorized database!";
             }
