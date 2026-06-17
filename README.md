@@ -10,7 +10,8 @@
 > [!NOTE]
 > ### System Topology Diagram
 > ![OpticHash System Flow Architecture](frontend/assets/images/architecture_diagram.png)
-> *Figure 1: Complete end-to-end routing lifecycle of an image request passing from the Vercel edge client through the Java orchestration gateway down to the dual-stage evaluation matrix.*
+> 
+*Figure 1: Complete end-to-end routing lifecycle of an image request passing from the Vercel edge client through the Java orchestration gateway down to the dual-stage evaluation matrix.*
 
 ### System Design Analysis
 The topology above illustrates the strict decoupling of this project's verification process. When an asset payload enters the ecosystem, it is directed to a Java routing gateway. Rather than immediately initializing deep learning compute matrices, the pipeline enforces a critical performance gate: the binary data drops into a native C++ microservice layer. If a Perceptual Hash match exists in our schema index, the system intercepts the asset and exits immediately with zero network hops. Novel assets route directly to the deep neural network.
