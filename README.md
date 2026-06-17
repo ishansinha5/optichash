@@ -1,8 +1,4 @@
 # OpticHash: Distributed Microservices & Compute-Optimized Vision Architecture
-
-**Deployment:** Native Linux VPS (Docker Compose via GitHub Student Developer Pack)
-**Status:** Proof of Concept (Built for League of Comic Geeks Integration Pitch)
-
 ---
 
 ## System Architecture Topology
