@@ -52,10 +52,10 @@ The true power of this project lies in how the underlying software architecture 
 This stack is designed to be fully reproducible across environments, running flawlessly on a native Linux VPS or a local machine.
 
 1. **Clone the Repository:**
-```bash
-   git clone [https://github.com/ishansinha5/OpticHash.git](https://github.com/ishansinha5/OpticHash.git)
-   cd OpticHash
-   
+
+git clone [https://github.com/ishansinha5/OpticHash.git](https://github.com/ishansinha5/OpticHash.git)
+cd OpticHash
+
 2. **Sync the Production Weights**: Ensure your local folder contains the compiled model binary file under ml-python/weights/comic_vision_int8.pth.
 
 3. **Orchestrate the Container Cluster**: Run the environment cluster using Docker Compose:
