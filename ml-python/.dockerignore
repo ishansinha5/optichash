@@ -1,0 +1,4 @@
+.venv/
+__pycache__/
+data/
+weights/comic_vision_fp32.pth

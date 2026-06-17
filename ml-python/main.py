@@ -91,23 +91,23 @@ async def process_comic(file: UploadFile = File(...)):
 
         METADATA_DB = {
             "absolute_batman_annual_1": {
-                "title": "Absolute Batman #1", 
+                "title": "Absolute Batman Annual #1", 
                 "url": "https://leagueofcomicgeeks.com/comic/6092062/absolute-batman-2025-annual-1"
             },
             "absolute_martian_manhunter": {
-                "title": "Absolute Martian Manhunter #1", 
+                "title": "Absolute Martian Manhunter #8", 
                 "url": "https://leagueofcomicgeeks.com/comic/1616741/absolute-martian-manhunter-8"
             },
             "beta_ray_bill_tpb": {
-                "title": "Beta Ray Bill: Argent Star", 
+                "title": "Beta Ray Bill: Argent Star (TPB)", 
                 "url": "https://leagueofcomicgeeks.com/comic/8509698/beta-ray-bill-argent-star-tp?variant=8271107"
             },
             "nightwing_compendium_3": {
-                "title": "Nightwing Compendium Three", 
+                "title": "Nightwing: A Knight in Bludhaven (Compendium Three)", 
                 "url": "https://leagueofcomicgeeks.com/comic/3717786/nightwing-a-knight-in-bluedhaven-compendium-book-3-tp"
             },
             "transformers_4": {
-                "title": "Transformers #4", 
+                "title": "Transformers #4 (Variant Cover)", 
                 "url": "https://leagueofcomicgeeks.com/comic/4294159/transformers-4?variant=9647505"
             }
         }

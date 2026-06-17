@@ -24,18 +24,30 @@ async function previewAndUpload(event) {
     formData.append("file", file);
 
     try {
-        // Pointing to the live cloud Edge Engine
-        const response = await fetch("https://ishansinha05-optichash-engine.hf.space/process", {
+        // [DEV MODE]: Pointing to the local Java Spring Boot Gateway
+        const response = await fetch("http://localhost:8080/process", {
             method: "POST",
             body: formData
         });
+        
+        // [PROD MODE]: Pointing to the live cloud Edge Engine
+        // const response = await fetch("https://ishansinha05-optichash-engine.hf.space/process", {
+        //     method: "POST",
+        //     body: formData
+        // });
         
         const data = await response.json();
         console.log("Gateway Response:", data);
 
         if (data.status === "success") {
             // Display title if available, otherwise display the raw model class ID
-            const matchName = (data.title !== undefined) ? data.title : "Class ID " + data.predicted_id;
+            let matchName = "";
+            if (data.title !== undefined) {
+                matchName = data.title;
+            } else {
+                matchName = "Class ID " + data.predicted_id;
+            }
+
             resultsDiv.innerText = " MATCH FOUND: " + matchName;
             
             routeIndicator.innerText = "Optimization Route: " + data.optimization_route.toUpperCase() + "\nCompute Footprint Saved: " + data.compute_cycles_saved;
@@ -48,7 +60,6 @@ async function previewAndUpload(event) {
         } else if (data.status === "error") {
             let errorImageHtml = "";
             
-            // Check if the backend threw the threshold rejection (Low confidence)
             // Check if the backend threw the threshold rejection (Low confidence)
             if (data.message.includes("Low confidence")) {
                 errorImageHtml = `<img src="assets/images/confusedspidey.jpg" alt="Confused Spider-Man" style="display: block; margin: 0 auto 15px auto; max-width: 180px; border-radius: 8px; border: 2px solid #dc3545;"><br>`;

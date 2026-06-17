@@ -2,7 +2,6 @@ package com.comicbookapp.gateway;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
@@ -11,10 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Map;
-
 @RestController
-@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class GatewayController {
 
     @Autowired
@@ -22,21 +19,12 @@ public class GatewayController {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    // The Fast Lookup Map: Translates Python's integer matrix output into frontend Titles
-    private static final Map<Integer, String> COMIC_CLASS_MAP = Map.of(
-        0, "Absolute Martian Manhunter",
-        1, "Absolute Batman",
-        2, "Transformers (Variant Cover)",
-        3, "Ultimate Spider-Man",
-        4, "Ben 10" 
-    );
-
     // Internal Docker network addresses
     private final String CPP_BOUNCER_URL = "http://phash_bouncer:8081/api/analyze-cover";
-    private final String PYTHON_BRAIN_URL = "http://ml_vision:8000/process";
+    private final String PYTHON_BRAIN_URL = "http://ml-python:7860/process";
 
-    // Endpoint explicitly matches the fetch('/api/scan-cover') call in scanner.js
-    @PostMapping("/scan-cover")
+    // Endpoint explicitly updated to match the fetch('/process') call in scanner.js
+    @PostMapping("/process")
     public ResponseEntity<String> processComic(@RequestParam("file") MultipartFile file) {
         try {
             byte[] fileBytes = file.getBytes();
@@ -71,16 +59,8 @@ public class GatewayController {
             HttpEntity<MultiValueMap<String, Object>> pythonRequest = new HttpEntity<>(body, pythonHeaders);
             ResponseEntity<String> pythonResponse = restTemplate.postForEntity(PYTHON_BRAIN_URL, pythonRequest, String.class);
 
-            // 4. Translate Python's integer ID into a string title
-            JsonNode pythonJson = mapper.readTree(pythonResponse.getBody());
-            int predictedId = pythonJson.get("predicted_id").asInt();
-            String verifiedTitle = COMIC_CLASS_MAP.getOrDefault(predictedId, "Unknown Cover Detected");
-            
-            // 5. Inject the translated title back into the JSON payload for the frontend UI
-            ObjectNode responseNode = (ObjectNode) pythonJson;
-            responseNode.put("title", verifiedTitle);
-
-            return ResponseEntity.ok(responseNode.toString());
+            // 4. Proxy Python's response directly back to the frontend without modification
+            return ResponseEntity.ok(pythonResponse.getBody());
 
         } catch (Exception e) {
             e.printStackTrace();
