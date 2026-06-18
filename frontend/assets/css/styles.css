@@ -179,7 +179,7 @@ h1, h2, h3 {
     /* Anchor inner edge flush with the panel-left's right edge (65vw) + small gap */
     right: calc(35vw - 10px);
     transform-origin: right center;
-    transform: rotate(-14deg);
+    transform: rotate(14deg);
     align-items: flex-end;
 }
 
@@ -188,7 +188,7 @@ h1, h2, h3 {
     /* Anchor inner edge flush with the panel-right's left edge (35vw) + small gap */
     left: calc(35vw - 10px);
     transform-origin: left center;
-    transform: rotate(14deg);
+    transform: rotate(-14deg);
     align-items: flex-start;
 }
 
@@ -291,20 +291,21 @@ h1, h2, h3 {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: 0 !important;
+    /* Horizontal padding keeps content inside the narrowing clip shape when scrolled */
+    padding: 0 18vw !important;
     z-index: 10;
     overflow-y: auto;
 }
 
 /* The inner content */
 .panel-trapezoid .content-area {
-    width: 52%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     margin-top: 13vh;
-    padding: 0 2vw 8vh 2vw;
+    padding-bottom: 8vh;
     text-align: center;
     overflow: visible;
 }
