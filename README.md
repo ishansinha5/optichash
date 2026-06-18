@@ -17,9 +17,9 @@
 > graph TD
 >     classDef default fill:#0ea5e9,stroke:#ffffff,stroke-width:2px,color:#ffffff,font-weight:bold;
 >
->     Client(["Vercel Edge Client<br>(Vanilla JS)"])
->     Java(["Java SpringBoot API Gateway<br>(Port 8080)"])
->     CPP(["C++ pHash Bouncer<br>(Port 8081)"])
+>     Client("Vercel Edge Client<br>(Vanilla JS)")
+>     Java("Java SpringBoot API Gateway<br>(Port 8080)")
+>     CPP("C++ pHash Bouncer<br>(Port 8081)")
 >     DB[("PostgreSQL / PostGIS")]
 >     Python[("Python FastAPI Worker<br>(Port 7860)")]
 >
@@ -29,7 +29,7 @@
 >     Diamond -->|"Execution Path A"| DB
 >     Diamond -->|"Execution Path B"| Python
 >
->     linkStyle default stroke:#22c55e,stroke-width:3px;
+>     linkStyle 0,1,2,3,4 stroke:#22c55e,stroke-width:3px;
 > ```
 > *Figure 1: High-level request routing through the API Gateway, intercepted by the C++ Gatekeeper before conditionally falling back to Python.*
 
@@ -40,9 +40,9 @@
 > graph TD
 >     classDef default fill:#0ea5e9,stroke:#ffffff,stroke-width:2px,color:#ffffff,font-weight:bold;
 >
->     Client["Vercel Edge Client<br>(Vanilla JS)"]
->     Java["Java SpringBoot API Gateway<br>(Port 8080)"]
->     CPP["C++ pHash Bouncer<br>(Port 8081)"]
+>     Client("Vercel Edge Client<br>(Vanilla JS)")
+>     Java("Java SpringBoot API Gateway<br>(Port 8080)")
+>     CPP("C++ pHash Bouncer<br>(Port 8081)")
 >     DB[("PostgreSQL / PostGIS")]
 >
 >     Client -->|"1. Request Image Match"| Java
@@ -52,7 +52,7 @@
 >     CPP -->|"5. CACHED_HIT_CPP (58.6M FLOPs Saved)"| Java
 >     Java -->|"6. JSON Response"| Client
 >
->     linkStyle default stroke:#22c55e,stroke-width:3px;
+>     linkStyle 0,1,2,3,4,5 stroke:#22c55e,stroke-width:3px;
 > ```
 > *Figure 2: The optimized route. A known image payload bypasses the neural network entirely, serving metadata directly from the persistent database.*
 
@@ -63,43 +63,27 @@
 > graph TD
 >     classDef default fill:#0ea5e9,stroke:#ffffff,stroke-width:2px,color:#ffffff,font-weight:bold;
 >
->     Client["Vercel Edge Client<br>(Vanilla JS)"]
->     Java["Java SpringBoot API Gateway<br>(Port 8080)"]
->     CPP["C++ pHash Bouncer<br>(Port 8081)"]
+>     Client("Vercel Edge Client<br>(Vanilla JS)")
+>     Java("Java SpringBoot API Gateway<br>(Port 8080)")
+>     CPP("C++ pHash Bouncer<br>(Port 8081)")
 >     DB[("PostgreSQL / PostGIS")]
 >     Python[("Python FastAPI Worker<br>(Port 7860)")]
 >
->     subgraph LEFT[" "]
->         direction TB
->         CPP --> DB
->         DB -.->|"4. No Match Found"| CPP
->     end
->
->     subgraph RIGHT[" "]
->         direction TB
->         Python
->     end
->
 >     Client -->|"1. Request Image Match"| Java
 >     Java -->|"2. Query Local Hash"| CPP
+>     CPP -->|"3. SQL SELECT"| DB
+>     DB -.->|"4. No Match Found"| CPP
 >     CPP -->|"5. CACHE_MISS"| Java
->     Java -->|"6. Deep Learning Inference"| Python
+>     Java -->|"6. Deep Learning Inference Route"| Python
 >     Python -->|"7. Returns Match + 58.6M FLOPs"| Java
 >     Java -->|"8. JSON Response"| Client
 >     Java == "9. Telemetry Write-Back (UPSERT)" ==> DB
 >
->     linkStyle 0 stroke:#22c55e,stroke-width:3px;
->     linkStyle 1 stroke:#22c55e,stroke-width:3px;
->     linkStyle 2 stroke:#22c55e,stroke-width:3px;
->     linkStyle 3 stroke:#22c55e,stroke-width:3px;
->     linkStyle 4 stroke:#22c55e,stroke-width:3px;
->     linkStyle 5 stroke:#22c55e,stroke-width:3px;
->     linkStyle 6 stroke:#22c55e,stroke-width:3px;
->     linkStyle 7 stroke:#22c55e,stroke-width:3px;
+>     linkStyle 0,1,2,3,4,5,6,7 stroke:#22c55e,stroke-width:3px;
 >     linkStyle 8 stroke:#22c55e,stroke-width:5px;
 > ```
 > *Figure 3: The fallback route. A novel image is routed to the INT8-quantized edge neural engine. The Java Gateway subsequently executes a dynamic write-back loop to ensure all future identical scans route to Execution Path A.*
-
+---
 
 ### System Design Analysis
 As a computer science student diving into enterprise backend systems, I wanted to understand how to build resilient, scalable architectures. This topology illustrates a strict decoupling of the verification process. When an image payload enters the ecosystem, it hits a Java routing gateway. Rather than immediately initializing deep learning compute matrices, the pipeline enforces a critical performance gate: the data drops into a native C++ microservice. If a Perceptual Hash match exists in our local memory map, the system intercepts the asset and exits immediately with zero deep-learning network hops. Novel assets bypass this and route directly to the neural network.
