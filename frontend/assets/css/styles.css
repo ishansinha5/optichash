@@ -266,6 +266,11 @@ h1, h2, h3 {
 
 /* ====== NEW RESOURCES PAGE COMPONENTS ====== */
 
+/* ====== NEW RESOURCES PAGE COMPONENTS ====== */
+
+/* Center Navigation for Resources Page (Horizontal Row) */
+/* ====== NEW RESOURCES PAGE COMPONENTS ====== */
+
 /* Center Navigation for Resources Page (Horizontal Row) */
 .nav-center {
     flex-direction: row !important;
@@ -281,25 +286,31 @@ h1, h2, h3 {
 .panel-trapezoid {
     position: fixed;
     bottom: 0;
-    left: 0; /* Anchors to the absolute left edge */
-    transform: none; /* Removes the centering math since it's 100% width */
-    width: 100vw; /* Stretches the bottom vertices to the exact corners */
-    height: 85vh; /* Firmly touches the bottom edge */
+    top: auto !important; /* Safely override .shader-panel */
+    left: 0; 
+    transform: none; 
+    width: 100vw; 
+    height: 85vh; 
     background: rgba(10, 10, 10, 0.93);
     clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10vh 5vw 0 5vw; /* Bumps the inner container down */
-    overflow-y: auto; /* Allow internal scrolling */
+    /* THE FIX: Lock the shape to the viewport so it never scrolls away */
+    overflow: hidden !important; 
     z-index: 10;
+    display: flex;
+    justify-content: center;
+    padding: 0 !important; /* Move padding to inner content */
 }
 
+/* The inner content handles the scrolling so the shadow stays locked */
 .panel-trapezoid .content-area {
+    width: 100%;
     max-width: 80%;
+    height: 100%; 
+    overflow-y: auto; /* Enable scroll just for the text/buttons */
+    padding-top: 10vh; 
+    padding-bottom: 15vh; /* Lots of space so buttons don't hit the bottom */
+    margin-top: 0;
     text-align: center;
-    margin-top: 6vh; /* Extra shove to separate 'SYSTEM RESOURCES' from the buttons */
-    padding-bottom: 50px;
 }
 
 /* ====== MOBILE OVERRIDE ====== */
@@ -310,7 +321,8 @@ h1, h2, h3 {
         width: 100vw; 
         height: 100vh;
         clip-path: none; 
-        padding: 120px 20px 40px 20px; /* Extra top padding for mobile */
+        padding: 120px 20px 40px 20px !important; 
+        overflow-y: auto !important; /* Restore scrolling to the panel on mobile */
     }
     
     .nav-angled { 
@@ -336,6 +348,8 @@ h1, h2, h3 {
         padding: 0; 
         margin: 0; 
         max-width: 100%;
+        height: auto;
+        overflow-y: visible; /* Let the parent handle scrolling */
     }
     .content-area h1 { font-size: 2.5rem; }
     .architectural-detail { text-align: left; font-size: 1rem; }
