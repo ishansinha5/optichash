@@ -178,7 +178,7 @@ h1, h2, h3 {
 .nav-left {
     left: auto !important;
     /* Anchor inner edge flush with the panel-left's right edge (65vw) + small gap */
-    right: calc(35vw + 40px);
+    right: calc(35vw + 50px);
     transform-origin: right center;
     transform: rotate(14deg);
     align-items: flex-end;
@@ -187,7 +187,7 @@ h1, h2, h3 {
 .nav-right {
     right: auto !important;
     /* Anchor inner edge flush with the panel-right's left edge (35vw) + small gap */
-    left: calc(35vw + 40px);
+    left: calc(35vw + 50px);
     transform-origin: left center;
     transform: rotate(-14deg);
     align-items: flex-start;
@@ -278,8 +278,8 @@ h1, h2, h3 {
     z-index: 20; /* Ensures nav stays visible above the fullscreen trapezoid */
 }
 
-/* Center Trapezoid Shader Panel */
-.panel-trapezoid {
+/* Center Full Shader Panel (Replacing the Trapezoid) */
+.panel-full {
     position: fixed;
     top: 0 !important;
     bottom: 0;
@@ -288,25 +288,25 @@ h1, h2, h3 {
     width: 100vw; 
     height: 100vh;
     background: rgba(15, 23, 42, 0.95);
-    clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+    /* No clip-path! Covers the entire screen */
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    /* Horizontal padding keeps content inside the narrowing clip shape when scrolled */
-    padding: 0 18vw !important;
+    padding: 0 4vw !important; /* Gentle, non-restrictive padding */
     z-index: 10;
     overflow-y: auto;
 }
 
 /* The inner content */
-.panel-trapezoid .content-area {
+.panel-full .content-area {
     width: 100%;
+    max-width: 1200px; /* Massive width unlocked for the two columns! */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin-top: 13vh;
-    padding-bottom: 8vh;
+    margin-top: 16vh; /* Clears the top navigation */
+    padding-bottom: 10vh;
     text-align: center;
     overflow: visible;
 }
@@ -316,7 +316,7 @@ h1, h2, h3 {
     .home-title { font-size: 4rem; }
     .nav-left a:nth-child(1), .nav-right a:nth-child(1),
     .nav-left a:nth-child(3), .nav-right a:nth-child(3) { position: static !important; }
-    .shader-panel, .panel-trapezoid { 
+    .shader-panel, .panel-full { 
         width: 100vw; 
         height: 100vh;
         clip-path: none; 
@@ -344,7 +344,7 @@ h1, h2, h3 {
     /* Remove the stagger on mobile since they are horizontal */
     .nav-left a:nth-child(3), .nav-right a:nth-child(3) { margin: 0; }
     
-    .content-area, .panel-trapezoid .content-area { 
+    .content-area, .panel-full .content-area { 
         padding: 0; 
         margin: 0; 
         max-width: 100%;
