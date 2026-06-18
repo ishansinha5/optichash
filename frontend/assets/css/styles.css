@@ -175,30 +175,24 @@ h1, h2, h3 {
 }
 
 .nav-left {
-    left: auto !important; 
-    right: 37vw; 
-    transform: rotate(-14deg); 
+    left: auto !important;
+    /* Anchor inner edge flush with the panel-left's right edge (65vw) + small gap */
+    right: calc(35vw - 10px);
+    transform-origin: right center;
+    transform: rotate(-14deg);
     align-items: flex-end;
 }
 
 .nav-right {
-    right: auto !important; 
-    left: 37vw; 
-    transform: rotate(14deg); 
+    right: auto !important;
+    /* Anchor inner edge flush with the panel-right's left edge (35vw) + small gap */
+    left: calc(35vw - 10px);
+    transform-origin: left center;
+    transform: rotate(14deg);
     align-items: flex-start;
 }
 
-/* Button 1 (top): nudge outward */
-.nav-left a:nth-child(1) { margin-right: 30px; }
-.nav-right a:nth-child(1) { margin-left: 30px; }
-
-/* Button 2 (Home): nudge outward to match */
-.nav-left a:nth-child(2) { margin-right: 15px; }
-.nav-right a:nth-child(2) { margin-left: 15px; }
-
-/* Button 3 (bottom): stays as-is — already perfect */
-.nav-left a:nth-child(3) { margin-right: 55px; }
-.nav-right a:nth-child(3) { margin-left: 55px; }
+/* All buttons share the same inner-edge anchor — no individual offsets needed */
 
 /* ====== INNER CONTENT STYLING ====== */
 .content-area h1 {
@@ -304,14 +298,13 @@ h1, h2, h3 {
 
 /* The inner content */
 .panel-trapezoid .content-area {
-    width: 100%;
-    max-width: 58%;
+    width: 52%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     margin-top: 13vh;
-    padding-bottom: 6vh;
+    padding: 0 2vw 8vh 2vw;
     text-align: center;
     overflow: visible;
 }
