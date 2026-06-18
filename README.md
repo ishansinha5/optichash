@@ -76,14 +76,15 @@
 >     Java -->|"2. Query Local Hash"| CPP
 >     CPP -->|"3. SQL SELECT"| DB
 >     
->     %% Pushed to two lines to prevent overlap with the DB node
->     DB -.->|"<br>4. No Match<br>Found"| CPP
+>     %% Dotted line arcs back up to C++
+>     CPP <.-.|"<br>4. No Match<br>Found"| DB
 >     
 >     CPP -->|"5. CACHE_MISS"| Java
->     Java -->|"6. Deep Learning Inference Route"| Python
 >     
->     %% Truncation fixes
->     Python -->|"7. Returns match + # of Flops"| Java
+>     %% Rank Modifiers (--->) push Python further down the page so the arrows don't cross
+>     Java --->|"6. Deep Learning Inference Route"| Python
+>     Python --->|"7. Returns match<br>+ # of Flops"| Java
+>     
 >     Java -->|"8. JSON Response"| Client
 >     Java == "9. Telemetry Write-Back<br>(UPSERT)" ==> DB
 >
@@ -91,6 +92,7 @@
 >     linkStyle 8 stroke:#22c55e,stroke-width:5px,color:white;
 > ```
 > *Figure 3: The fallback route. A novel image is routed to the INT8-quantized edge neural engine. The Java Gateway subsequently executes a dynamic write-back loop to ensure all future identical scans route to Execution Path A.*
+
 ---
 
 ### System Design Analysis
