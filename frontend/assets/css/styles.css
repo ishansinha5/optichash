@@ -188,10 +188,16 @@ h1, h2, h3 {
     align-items: flex-start;
 }
 
-/* Nudge buttons 1 & 3 outward; button 2 (Home) sets the inner edge */
-.nav-left a:nth-child(1) { margin-right: 55px; }
+/* Button 1 (top): nudge outward */
+.nav-left a:nth-child(1) { margin-right: 30px; }
+.nav-right a:nth-child(1) { margin-left: 30px; }
+
+/* Button 2 (Home): nudge outward to match */
+.nav-left a:nth-child(2) { margin-right: 15px; }
+.nav-right a:nth-child(2) { margin-left: 15px; }
+
+/* Button 3 (bottom): stays as-is — already perfect */
 .nav-left a:nth-child(3) { margin-right: 55px; }
-.nav-right a:nth-child(1) { margin-left: 55px; }
 .nav-right a:nth-child(3) { margin-left: 55px; }
 
 /* ====== INNER CONTENT STYLING ====== */
@@ -280,36 +286,34 @@ h1, h2, h3 {
 /* Center Trapezoid Shader Panel */
 .panel-trapezoid {
     position: fixed;
-    top: 0 !important; /* Anchors to the absolute top of the screen */
+    top: 0 !important;
     bottom: 0;
     left: 0; 
     transform: none; 
     width: 100vw; 
-    height: 100vh; /* Stretches the full height of the monitor */
+    height: 100vh;
     background: rgba(15, 23, 42, 0.95);
     clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
     display: flex;
-    align-items: flex-start; /* Top-align content */
+    align-items: flex-start;
     justify-content: center;
     padding: 0 !important;
-    padding-top: 13vh !important; /* Clear the nav bar */
     z-index: 10;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 /* The inner content */
 .panel-trapezoid .content-area {
     width: 100%;
-    max-width: 60%; 
-    height: 80vh;
+    max-width: 58%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin-top: 0;
-    padding: 0;
+    margin-top: 13vh;
+    padding-bottom: 6vh;
     text-align: center;
-    overflow-y: auto;
+    overflow: visible;
 }
 
 /* ====== MOBILE OVERRIDE ====== */
