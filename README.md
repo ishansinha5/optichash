@@ -1,6 +1,14 @@
 # OpticHash: Distributed Microservices & Compute-Optimized Vision Architecture
 ---
 
+## Proof of Concept: Hardware-Aware System Telemetry
+
+> [!IMPORTANT]
+> ### System Operation Demonstration
+> [![OpticHash End-to-End Demonstration](https://img.youtube.com/vi/i8L5bwY-MSA/maxresdefault.jpg)](https://youtu.be/i8L5bwY-MSA)
+> *Click the image above to watch the full end-to-end operation running locally under a multi-container Docker Compose environment.*
+
+---
 ## System Architecture Topology
 
 > [!NOTE]
