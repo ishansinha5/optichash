@@ -51,7 +51,7 @@
 >     Java -->|"2. Query Local Hash"| CPP
 >     CPP -->|"3. SQL SELECT"| DB
 >     DB -->|"4. Match Found!"| CPP
->     CPP -->|"5. CACHED_HIT_CPP (58.6M FLOPs Saved)"| Java
+>     CPP -->|"5. CACHED_HIT_CPP<br>(58.6M FLOPs Saved)"| Java
 >     Java -->|"6. JSON Response"| Client
 >
 >     linkStyle 0,1,2,3,4,5 stroke:#22c55e,stroke-width:3px,color:white;
@@ -84,7 +84,7 @@
 >     
 >     %% Rank Modifiers (--->) push Python further down the page
 >     Java --->|"6. Deep Learning Inference Route"| Python
->     Python --->|"7. Returns match<br>+ # of Flops"| Java
+>     Python --->|"7. Returns match<br>+ # of Flops (58.6M)"| Java
 >     
 >     Java -->|"8. JSON Response"| Client
 >     Java == "9. Telemetry Write-Back<br>(UPSERT)" ==> DB
