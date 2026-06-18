@@ -76,12 +76,13 @@
 >     Java -->|"2. Query Local Hash"| CPP
 >     CPP -->|"3. SQL SELECT"| DB
 >     
->     %% Dotted line arcs back up to C++
->     CPP <.-.|"<br>4. No Match<br>Found"| DB
+>     %% Standard upward dotted arrow. 
+>     %% The Python rank modifiers below keep this path clear!
+>     DB -.->|"<br>4. No Match<br>Found"| CPP
 >     
 >     CPP -->|"5. CACHE_MISS"| Java
 >     
->     %% Rank Modifiers (--->) push Python further down the page so the arrows don't cross
+>     %% Rank Modifiers (--->) push Python further down the page
 >     Java --->|"6. Deep Learning Inference Route"| Python
 >     Python --->|"7. Returns match<br>+ # of Flops"| Java
 >     
