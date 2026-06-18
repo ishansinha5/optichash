@@ -9,17 +9,25 @@
 </head>
 <body>
   <div class="subpage-bg"></div>
-  
+
+  <!-- Left nav: Resources top, Home middle, Architecture bottom -->
   <nav class="nav-angled nav-left">
-    <a href="about.html">Architecture</a>
+    <a href="resources.html">Resources</a>
     <a href="index.html">Home</a>
-    <a href="resources.html" class="btn">Resources</a>
+    <a href="about.html">Architecture</a>
   </nav>
 
-  <div class="shader-panel panel-left">
-    <div class="content-area">
-      
-      <h1>LIVE MATCH ENGINE</h1>
+  <!-- Right nav: Architecture top, Home middle, Resources bottom (mirrored) -->
+  <nav class="nav-angled nav-right">
+    <a href="about.html">Architecture</a>
+    <a href="index.html">Home</a>
+    <a href="resources.html">Resources</a>
+  </nav>
+
+  <div class="shader-panel panel-trapezoid">
+    <div class="content-area" style="text-align: left; max-width: 60%; overflow-y: auto; max-height: 80vh;">
+
+      <h1 style="text-align: center;">LIVE MATCH ENGINE</h1>
 
       <div style="text-align: center; margin-bottom: 20px;">
         <p style="color: #ccc; font-size: 0.9em; max-width: 400px; margin: 0 auto;">
@@ -64,7 +72,7 @@
 
       </div>
 
-      <div class="scanner-container">
+      <div class="scanner-container" style="max-width: 100%;">
         <div class="scanner-buttons">
           <label class="upload-btn mobile-camera-only">
             📸 OPEN CAMERA
@@ -91,7 +99,7 @@
         </a>
       </div>
 
-      <p class="architectural-detail" style="margin-top: 2rem;">
+      <p class="architectural-detail" style="margin-top: 2rem; text-align: left;">
         This scanner represents the front-end of a hardware-aware computer vision pipeline optimized for edge deployments. The core focus is efficient system routing and sustainable execution. 
         <br><br>
         When a photo is submitted, the payload is first routed to a native C++ microservice that calculates a geometric Perceptual Hash (pHash). If it finds an exact spatial match in the local cache, it returns the requested metadata instantly without invoking heavy compute.
