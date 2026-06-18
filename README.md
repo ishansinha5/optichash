@@ -34,7 +34,7 @@
 >     Diamond -->|"Execution Path B"| Python
 > 
 >     %% Make all links green
->     linkStyle default stroke:#22c55e,stroke-width:3px,color:#ffffff;
+>     linkStyle default stroke:#22c55e,stroke-width:3px;
 > ```
 > *Figure 1: High-level request routing through the API Gateway, intercepted by the C++ Gatekeeper before conditionally falling back to Python.*
 
@@ -61,7 +61,7 @@
 >     Java -->|"6. JSON Response"| Client
 > 
 >     %% Make all links green
->     linkStyle default stroke:#22c55e,stroke-width:3px,color:#ffffff;
+>     linkStyle default stroke:#22c55e,stroke-width:3px;
 > ```
 > *Figure 2: The optimized route. A known image payload bypasses the neural network entirely, serving metadata directly from the persistent database.*
 
@@ -94,7 +94,7 @@
 >     Java == "9. Telemetry Write-Back (UPSERT)" ==> DB
 > 
 >     %% Make all links green
->     linkStyle default stroke:#22c55e,stroke-width:3px,color:#ffffff;
+>     linkStyle default stroke:#22c55e,stroke-width:3px;
 > ```
 > *Figure 3: The fallback route. A novel image is routed to the INT8-quantized edge neural engine. The Java Gateway subsequently executes a dynamic write-back loop to ensure all future identical scans route to Execution Path A.*
 
