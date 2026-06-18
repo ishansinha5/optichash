@@ -73,7 +73,7 @@ int main() {
     httplib::Server svr;
 
     // Define the database connection string matching your docker-compose network
-    string db_conn_string = "dbname=postgres user=postgres password=postgres host=spatial_db port=5432";
+    string db_conn_string = "dbname=comicdb user=admin password=enterprise_secure host=spatial_db port=5432";
 
     // 1. Initialize Database on Startup
     try {
