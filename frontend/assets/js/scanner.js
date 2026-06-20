@@ -5,7 +5,7 @@ if (window.location.hostname === "localhost" || window.location.hostname === "12
     API_BASE_URL = "http://localhost:8080";
 } else {
     // If not local, route traffic to the production Linux VPS
-    API_BASE_URL = "http://api.optichash.me";
+    API_BASE_URL = "/api-proxy";
 }
 
 async function previewAndUpload(event) {
