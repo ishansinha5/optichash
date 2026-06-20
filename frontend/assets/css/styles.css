@@ -100,7 +100,7 @@ h1, h2, h3 {
 .shader-panel {
     position: fixed;
     top: 0;
-    height: 100vh;
+    height: 100%;
     width: 65vw;
     color: white;
     display: flex;
@@ -112,7 +112,7 @@ h1, h2, h3 {
 }
 
 .content-area {
-    margin-top: 12vh; 
+    margin-top: 140px; 
     padding-bottom: 15vh; 
 }
 
@@ -156,13 +156,13 @@ h1, h2, h3 {
     pointer-events: all;
     font-family: "Bangers", sans-serif;
     color: rgba(255, 255, 255, 0.85);
-    font-size: 1.4rem; 
+    font-size: 1.1rem; 
     text-decoration: none;
     transition: all 0.2s ease;
     text-transform: uppercase;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 30px;
-    padding: 10px 25px;
+    padding: 8px 20px;
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(4px);
     white-space: nowrap;
@@ -177,7 +177,6 @@ h1, h2, h3 {
 
 .nav-left {
     left: auto !important;
-    /* Anchor inner edge flush with the panel-left's right edge (65vw) + small gap */
     right: calc(35vw + 50px);
     transform-origin: right center;
     transform: rotate(14deg);
@@ -186,14 +185,11 @@ h1, h2, h3 {
 
 .nav-right {
     right: auto !important;
-    /* Anchor inner edge flush with the panel-right's left edge (35vw) + small gap */
     left: calc(35vw + 50px);
     transform-origin: left center;
     transform: rotate(-14deg);
     align-items: flex-start;
 }
-
-/* All buttons share the same inner-edge anchor — no individual offsets needed */
 
 /* ====== INNER CONTENT STYLING ====== */
 .content-area h1 {
@@ -275,7 +271,7 @@ h1, h2, h3 {
     right: 0 !important;
     justify-content: center;
     width: 100%;
-    z-index: 20; /* Ensures nav stays visible above the fullscreen trapezoid */
+    z-index: 20; 
 }
 
 /* Center Full Shader Panel (Replacing the Trapezoid) */
@@ -286,26 +282,24 @@ h1, h2, h3 {
     left: 0; 
     transform: none; 
     width: 100vw; 
-    height: 100vh;
+    height: 100%;
     background: rgba(15, 23, 42, 0.95);
-    /* No clip-path! Covers the entire screen */
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: 0 4vw !important; /* Gentle, non-restrictive padding */
+    padding: 0 4vw !important; 
     z-index: 10;
     overflow-y: auto;
 }
 
-/* The inner content */
 .panel-full .content-area {
     width: 100%;
-    max-width: 1200px; /* Massive width unlocked for the two columns! */
+    max-width: 1200px; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin-top: 16vh; /* Clears the top navigation */
+    margin-top: 140px; 
     padding-bottom: 10vh;
     text-align: center;
     overflow: visible;
@@ -316,13 +310,14 @@ h1, h2, h3 {
     .home-title { font-size: 4rem; }
     .nav-left a:nth-child(1), .nav-right a:nth-child(1),
     .nav-left a:nth-child(3), .nav-right a:nth-child(3) { position: static !important; }
+    
     .shader-panel, .panel-full { 
         width: 100vw; 
-        height: 100vh;
+        height: 100% !important; 
         clip-path: none; 
-        padding: 120px 20px 40px 20px !important; 
+        padding: 0px 20px 40px 20px !important; 
         overflow-y: auto !important; 
-        display: block !important; /* Turns off centering on mobile so it can scroll normally */
+        display: block !important; 
     }
     
     .nav-angled { 
@@ -341,17 +336,17 @@ h1, h2, h3 {
         transform: none !important; 
     }
 
-    /* Remove the stagger on mobile since they are horizontal */
     .nav-left a:nth-child(3), .nav-right a:nth-child(3) { margin: 0; }
     
     .content-area, .panel-full .content-area { 
-        padding: 0; 
         margin: 0; 
+        padding-top: 110px !important; 
         max-width: 100%;
         height: auto;
-        display: block; /* Reverts flex layout for mobile */
+        display: block; 
         overflow-y: visible; 
     }
+    
     .content-area h1 { font-size: 2.5rem; }
     .architectural-detail { text-align: left; font-size: 1rem; }
     .home-buttons { flex-direction: column; width: 90%; }
