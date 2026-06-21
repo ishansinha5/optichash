@@ -19,7 +19,12 @@
   <div class="shader-panel panel-right">
     <div class="content-area" style="margin-top: 150px;">
       <h1>SYSTEM ARCHITECTURE</h1>
-      
+      <div style="background: rgba(255, 215, 0, 0.1); border-left: 4px solid #FFD700; padding: 15px 20px; margin-top: 20px; margin-bottom: 30px; border-radius: 0 8px 8px 0;">
+        <p style="color: #FFD700; font-size: 0.95em; margin: 0; line-height: 1.5; font-family: monospace;">
+        <strong>[INFRASTRUCTURE NOTE]</strong><br>
+          To strictly enforce the Green AI mandate and eliminate idle cloud compute costs, the live multi-container pipeline (Spring Boot, PostGIS, PyTorch) is currently hibernating. This live demo simulates the edge routing logic. The complete backend orchestration and C++ spatial code are available for review on GitHub.
+        </p>
+      </div>
       <p class="architectural-detail" style="margin-top: 2rem;">
         <strong>The Compute Constraint & Optimized AI:</strong><br>
         While deploying an image classifier is straightforward with access to heavy GPU clusters in the cloud, this project was designed around strict, artificial compute constraints. Drawing from enterprise-grade systems engineering, the goal was to architect an "Optimized AI" microservices pipeline capable of running locally on standard CPU edge devices. By minimizing the computational footprint, we drastically reduce energy consumption and latency while maintaining production-level accuracy for comic book cover identification.

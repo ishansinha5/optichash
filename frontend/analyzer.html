@@ -36,9 +36,9 @@
                     <ul style="list-style: none; padding: 0; margin-top: 15px; color: #ccc; font-size: 0.95em; text-align: left; line-height: 1.5;">
                       <li style="margin-bottom: 5px;">- DC Comics' Absolute Batman Annual #1 (Cover A)</li>
                       <li style="margin-bottom: 5px;">- DC Comics' Absolute Martian Manhunter #8 (Cover A)</li>
-                      <li style="margin-bottom: 5px;">- Marvel Comics' Beta Ray Bill: Argent Star (Trade Paperback - 2025 Edition Cover A)</li>
-                      <li style="margin-bottom: 5px;">- DC Comics' Nightwing: A Knight In Bludhaven (Compendium Three - Cover A)</li>
-                      <li style="margin-bottom: 5px;">- Image Comics' Transformers #4 (Cover E 1:50 Andrea Milana Variant)</li>
+                      <li style="margin-bottom: 5px;">- Marvel Comics' Beta Ray Bill: Argent Star (Trade Paperback)</li>
+                      <li style="margin-bottom: 5px;">- DC Comics' Nightwing: A Knight In Bludhaven (Compendium Three)</li>
+                      <li style="margin-bottom: 5px;">- Image Comics' Transformers #4 (Milana Variant)</li>
                     </ul>
                   </details>
 
@@ -47,35 +47,36 @@
                   <details style="text-align: left; cursor: pointer; color: #888;">
                       <summary style="font-weight: bold; outline: none; color: #FFD700; font-size: 1.1em;">View Scanning Examples</summary>
                       <div style="display: flex; justify-content: center; gap: 15px; margin-top: 15px; flex-wrap: wrap;">
-                          <div class="example-card" onclick="openScanModal('assets/images/good_scan_1.jpg', 'Minimal hand overlap with the cover, crisp line contrast, and uniform, indirect lighting with no high-intensity glare hotspots.')" style="cursor: zoom-in;">
-                              <img src="assets/images/good_scan_1.jpg" alt="Good Scan" style="height: 120px; width: auto; border: 2px solid #28a745; border-radius: 8px;">
-                              <p style="color: #28a745; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">✔️ Good</p>
+                          
+                          <div class="example-card" onclick="openScanModal('assets/images/resources_nightwing_success.jpg', 'Clear Photo: Minimal hand overlap with the cover, crisp line contrast, and uniform, indirect lighting with no high-intensity glare hotspots.')" style="cursor: zoom-in;">
+                              <img src="assets/images/resources_nightwing_success.jpg" alt="Clear Scan" style="height: 120px; width: auto; border: 2px solid #28a745; border-radius: 8px;">
+                              <p style="color: #28a745; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">✔️ Clear</p>
                           </div>
-                          <div class="example-card" onclick="openScanModal('assets/images/good_scan_2.jpg', 'Flat geometric orientation where the entire cover area fills the bulk of the frame, maximizing keypoint extraction.')" style="cursor: zoom-in;">
-                              <img src="assets/images/good_scan_2.jpg" alt="Good Scan" style="height: 120px; width: auto; border: 2px solid #28a745; border-radius: 8px;">
-                              <p style="color: #28a745; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">✔️ Good</p>
+                          
+                          <div class="example-card" onclick="openScanModal('assets/images/resources_tf4_milana_success.jpg', 'Digital Scan: Flat geometric orientation where the entire cover area fills the bulk of the frame, maximizing keypoint extraction.')" style="cursor: zoom-in;">
+                              <img src="assets/images/resources_tf4_milana_success.jpg" alt="Digital Scan" style="height: 120px; width: auto; border: 2px solid #28a745; border-radius: 8px;">
+                              <p style="color: #28a745; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">✔️ Flat</p>
                           </div>
-                          <div class="example-card" onclick="openScanModal('assets/images/bad_scan_1.jpg', 'Too many fingers blocking structural line art elements along the primary border layout.')" style="cursor: zoom-in;">
-                              <img src="assets/images/bad_scan_1.jpg" alt="Bad Scan" style="height: 120px; width: auto; border: 2px solid #dc3545; border-radius: 8px;">
-                              <p style="color: #dc3545; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">❌ Obscured</p>
+                          
+                          <div class="example-card" onclick="openScanModal('assets/images/resources_batman_success_thumbs.jpg', 'In-Hand (Complex Background): While holding the comic obscures parts of the cover, the primary structural line art elements are still visible enough for spatial mapping.')" style="cursor: zoom-in;">
+                              <img src="assets/images/resources_batman_success_thumbs.jpg" alt="In-Hand Scan" style="height: 120px; width: auto; border: 2px solid #facc15; border-radius: 8px;">
+                              <p style="color: #facc15; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">⚠️ In-Hand</p>
                           </div>
-                          <div class="example-card" onclick="openScanModal('assets/images/bad_scan_2.jpg', 'High-intensity environmental lighting glare reflecting directly off the gloss coat, washing out color values, and just too many things in the image itself.')" style="cursor: zoom-in;">
-                              <img src="assets/images/bad_scan_2.jpg" alt="Bad Scan" style="height: 120px; width: auto; border: 2px solid #dc3545; border-radius: 8px;">
-                              <p style="color: #dc3545; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">❌ Noisy</p>
+                          
+                          <div class="example-card" onclick="openScanModal('assets/images/resources_betaraybill_success_blurry.jpg', 'Blurry/Low Light: The image lacks sharp definition, and environmental lighting glare reflects directly off the gloss coat, washing out color values.')" style="cursor: zoom-in;">
+                              <img src="assets/images/resources_betaraybill_success_blurry.jpg" alt="Blurry Scan" style="height: 120px; width: auto; border: 2px solid #dc3545; border-radius: 8px;">
+                              <p style="color: #dc3545; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">❌ Blurry</p>
                           </div>
+                          
                       </div>
                   </details>
               </div>
 
               <div class="scanner-container" style="margin-top: 0; width: 100%; max-width: 100%;">
-                <div class="scanner-buttons">
-                  <label class="upload-btn mobile-camera-only">
-                    📸 SCAN COMIC
-                    <input type="file" accept="image/*" capture="environment" style="display: none;" onchange="previewAndUpload(event)">
-                  </label>
-
+                
+                <div class="scanner-buttons" style="display: flex; justify-content: center;">
                   <label class="upload-btn">
-                    📁 UPLOAD FILE
+                    📁 UPLOAD ASSET
                     <input type="file" accept="image/*,.heic,.heif,image/heic,image/heif" style="display: none;" onchange="previewAndUpload(event)">
                   </label>
                 </div>
@@ -87,7 +88,25 @@
 
                 <div id="scan-results" style="margin-top: 20px; font-weight: bold; font-size: 1.2em; text-align: center;"></div>
                 
-                <div id="route-indicator" style="margin-top: 10px; color: #a3e635; display: none; text-align: left;"></div>
+                <div id="hardware-metrics" style="display: none; margin-top: 20px; background: rgba(0,0,0,0.6); padding: 15px; border-radius: 8px; border: 1px solid #333; text-align: left;">
+                    <div style="margin-bottom: 10px;">
+                        <span style="color: #888; font-size: 0.85em; font-family: monospace;">ROUTING LATENCY</span>
+                        <div style="width: 100%; background: #222; height: 8px; border-radius: 4px; margin-top: 5px; overflow: hidden;">
+                            <div id="metric-latency" style="width: 0%; height: 100%; background: #a3e635; transition: width 0.5s;"></div>
+                        </div>
+                        <span id="metric-latency-text" style="color: #a3e635; font-size: 0.85em; font-family: monospace;">0ms</span>
+                    </div>
+                    <div>
+                        <span style="color: #888; font-size: 0.85em; font-family: monospace;">VRAM ALLOCATION</span>
+                        <div style="width: 100%; background: #222; height: 8px; border-radius: 4px; margin-top: 5px; overflow: hidden;">
+                            <div id="metric-vram" style="width: 0%; height: 100%; background: #0ea5e9; transition: width 0.5s;"></div>
+                        </div>
+                        <span id="metric-vram-text" style="color: #0ea5e9; font-size: 0.85em; font-family: monospace;">0 MB / 4096 MB</span>
+                    </div>
+                </div>
+
+                <div id="system-terminal" style="display: none; margin-top: 15px; background: #050505; padding: 15px; border-radius: 8px; border: 1px solid #222; text-align: left; height: 120px; overflow-y: auto; font-family: monospace; font-size: 0.85em; color: #a3e635; box-shadow: inset 0 0 10px rgba(0,0,0,0.8);">
+                </div>
 
                 <a id="comic-locg-link" href="#" target="_blank" style="display: none; color: #facc15; margin-top: 10px; text-decoration: underline; font-weight: bold; text-align: center;">
                   Link to League of Comic Geeks page
@@ -104,6 +123,14 @@
                 <br><br>
                 If the cover is heavily obscured, distorted, or unrecognized by the cache, the system gracefully falls back to a highly quantized INT8 PyTorch engine. This neural network has been specifically trained on extreme edge cases—including harsh lighting glare, deep shadows, steep viewing angles, and real-world background messes—ensuring high-accuracy recognition in everyday environments.
               </p>
+              
+              <div style="margin-top: 30px; background: rgba(0,0,0,0.4); padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="color: #FFD700; font-size: 1em; margin-bottom: 10px; margin-top: 0;">PIPELINE DEMONSTRATION</h3>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+                  <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" src="https://www.youtube.com/embed/i8L5bwY-MSA" allowfullscreen></iframe>
+                </div>
+              </div>
+              
           </div>
 
       </div>
