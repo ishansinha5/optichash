@@ -16,30 +16,32 @@
     <a href="analyzer.html">Live Matcher</a>
   </nav>
 
-  <div class="content-area" style="margin-top: 150px;">
-  <h1>SYSTEM RESOURCES</h1>
+  <div class="shader-panel panel-left">
+    <div class="content-area" style="margin-top: 150px;">
+      <h1>SYSTEM RESOURCES</h1>
 
-  <p class="architectural-detail" style="margin-top: 1.5rem;">
-    <strong>Evaluating the Pipeline</strong><br>
-    This resource kit provides clean baseline data for testing OpticHash's optimization routing. Download a verified asset below, then upload it to the Live Matcher to observe the system transition from a heavy Python inference task (Cache Miss) to a zero-compute C++ bypass (Cache Hit) in real-time.
-  </p>
+      <p class="architectural-detail" style="margin-top: 1.5rem;">
+        <strong>Evaluating the Pipeline</strong><br>
+        This resource kit provides clean baseline data for testing OpticHash's optimization routing. Download a verified asset below, then upload it to the Live Matcher to observe the system transition from a heavy Python inference task (Cache Miss) to a zero-compute C++ bypass (Cache Hit) in real-time.
+      </p>
 
-  <h3 style="color: #0ea5e9; margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 10px;">Cache Hit Targets (Spatial Matches)</h3>
-  <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
-    <button onclick="downloadAsset('resources_batman_success_thumbs.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Absolute Batman (Thumbs)</button>
-    <button onclick="downloadAsset('resources_betaraybill_success_blurry.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Beta Ray Bill (Blurry)</button>
-    <button onclick="downloadAsset('resources_martianmanhunter_success_zoomed.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Martian Manhunter (Zoomed)</button>
-    <button onclick="downloadAsset('resources_nightwing_success.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Nightwing (Clear)</button>
-    <button onclick="downloadAsset('resources_tf4_milana_success.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Transformers #4 (Digital)</button>
+      <h3 style="color: #0ea5e9; margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 10px;">Cache Hit Targets (Spatial Matches)</h3>
+      <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+        <button onclick="downloadAsset('resources_batman_success_thumbs.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Absolute Batman (Thumbs)</button>
+        <button onclick="downloadAsset('resources_betaraybill_success_blurry.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Beta Ray Bill (Blurry)</button>
+        <button onclick="downloadAsset('resources_martianmanhunter_success_zoomed.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Martian Manhunter (Zoomed)</button>
+        <button onclick="downloadAsset('resources_nightwing_success.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Nightwing (Clear)</button>
+        <button onclick="downloadAsset('resources_tf4_milana_success.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Transformers #4 (Digital)</button>
+      </div>
+
+      <h3 style="color: #dc3545; margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 10px;">Cache Miss Targets (ML Edge Cases)</h3>
+      <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+        <button onclick="downloadAsset('resources_batman_failure_hdscan.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px; border-color: #dc3545; color: #dc3545;">📥 Absolute Batman (HD Scan)</button>
+        <button onclick="downloadAsset('resources_betaraybill_failure_angled.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px; border-color: #dc3545; color: #dc3545;">📥 Beta Ray Bill (Angled)</button>
+        <button onclick="downloadAsset('resources_martianmanhunter_failure_noisy.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px; border-color: #dc3545; color: #dc3545;">📥 Martian Manhunter (Noisy)</button>
+      </div>
+    </div>
   </div>
-
-  <h3 style="color: #dc3545; margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 10px;">Cache Miss Targets (ML Edge Cases)</h3>
-  <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
-    <button onclick="downloadAsset('resources_batman_failure_hdscan.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px; border-color: #dc3545; color: #dc3545;">📥 Absolute Batman (HD Scan)</button>
-    <button onclick="downloadAsset('resources_betaraybill_failure_angled.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px; border-color: #dc3545; color: #dc3545;">📥 Beta Ray Bill (Angled)</button>
-    <button onclick="downloadAsset('resources_martianmanhunter_failure_noisy.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px; border-color: #dc3545; color: #dc3545;">📥 Martian Manhunter (Noisy)</button>
-  </div>
-</div>
 
 <script>
   function downloadAsset(filename) {
@@ -51,26 +53,5 @@
       document.body.removeChild(downloadAnchor);
   }
 </script>
-
-  <script>
-    function downloadRandomTestImage() {
-        const testImages = [
-            'assets/images/good_scan_1.jpg',
-            'assets/images/good_scan_2.jpg'
-        ];
-        const randomIndex = Math.floor(Math.random() * testImages.length);
-        const selectedImage = testImages[randomIndex];
-        const downloadAnchor = document.createElement('a');
-        if (downloadAnchor !== null) {
-            downloadAnchor.href = selectedImage;
-            const filenameArray = selectedImage.split('/');
-            const filename = filenameArray[filenameArray.length - 1];
-            downloadAnchor.download = 'OpticHash_TestAsset_' + filename;
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            document.body.removeChild(downloadAnchor);
-        }
-    }
-  </script>
 </body>
 </html>

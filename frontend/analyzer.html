@@ -116,14 +116,13 @@
           </div>
 
           <div style="flex: 1 1 400px; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 10px;">
-              <p class="architectural-detail" style="margin-top: 0; text-align: left; font-size: 1.15rem; line-height: 1.7;">
-                This scanner represents the front-end of a hardware-aware computer vision pipeline optimized for edge deployments. The core focus is efficient system routing and sustainable execution. 
+              <p class="architectural-detail" style="margin-top: 0; text-align: left; font-size: 1.05rem; line-height: 1.6;">
+                This scanner represents the front-end of a hardware-aware computer vision pipeline.
                 <br><br>
-                When a photo is submitted, the payload is first routed to a native C++ microservice that calculates a geometric Perceptual Hash (pHash). If it finds an exact spatial match in the local cache, it returns the requested metadata instantly without invoking heavy compute.
+                <strong style="color: #a3e635;">1. Spatial Cache (Native C++):</strong> Incoming images are hashed and compared against a local geometric database. Exact matches return instantly, bypassing heavy compute.
                 <br><br>
-                If the cover is heavily obscured, distorted, or unrecognized by the cache, the system gracefully falls back to a highly quantized INT8 PyTorch engine. This neural network has been specifically trained on extreme edge cases—including harsh lighting glare, deep shadows, steep viewing angles, and real-world background messes—ensuring high-accuracy recognition in everyday environments.
+                <strong style="color: #facc15;">2. Edge Inference (PyTorch):</strong> Unrecognized covers trigger a fallback to a quantized INT8 neural network, executing high-accuracy classification natively on the edge device.
               </p>
-              
               <div style="margin-top: 30px; background: rgba(0,0,0,0.4); padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
                 <h3 style="color: #FFD700; font-size: 1em; margin-bottom: 10px; margin-top: 0;">PIPELINE DEMONSTRATION</h3>
                 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
