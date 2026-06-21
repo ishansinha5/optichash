@@ -263,3 +263,28 @@ function showHibernationModal() {
         modal.style.display = 'flex';
     }
 }
+function showCameraDisabledModal() {
+    let modal = document.getElementById('camera-disabled-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'camera-disabled-modal';
+        modal.style.cssText = 'position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; padding: 20px;';
+        
+        modal.innerHTML = `
+            <div style="background-color: #111; max-width: 500px; width: 100%; border: 1px solid #facc15; border-radius: 12px; padding: 30px; text-align: left; position: relative;">
+                <span style="position: absolute; top: 10px; right: 15px; color: #888; font-size: 28px; font-weight: bold; cursor: pointer;" onclick="document.getElementById('camera-disabled-modal').style.display='none'">&times;</span>
+                <h2 style="color: #facc15; margin-top: 0;">📸 Live Camera Disabled</h2>
+                <p style="color: #eee; font-size: 1.05em; line-height: 1.6;">
+                    Direct video stream capture has been disabled in this demo environment to conserve edge compute bandwidth. 
+                </p>
+                <p style="color: #aaa; font-size: 0.95em; line-height: 1.5; margin-top: 15px;">
+                    To test the pipeline, please use the <b>UPLOAD ASSET</b> button to select an image from your device or use a pre-verified cover from the Resource Kit.
+                </p>
+                <button onclick="document.getElementById('camera-disabled-modal').style.display='none'" class="btn" style="margin-top: 20px; width: 100%; text-align: center; border-color: #facc15; color: #facc15;">Understood</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    } else {
+        modal.style.display = 'flex';
+    }
+}

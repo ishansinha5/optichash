@@ -74,13 +74,16 @@
 
               <div class="scanner-container" style="margin-top: 0; width: 100%; max-width: 100%;">
                 
-                <div class="scanner-buttons" style="display: flex; justify-content: center;">
-                  <label class="upload-btn">
-                    📁 UPLOAD ASSET
-                    <input type="file" accept="image/*" capture="environment" style="display: none;" onchange="previewAndUpload(event)">
-                  </label>
+                <div class="scanner-buttons" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+  <label class="upload-btn">
+    📁 UPLOAD ASSET
+    <input type="file" accept="image/*,.heic,.heif,image/heic,image/heif" style="display: none;" onchange="previewAndUpload(event)">
+  </label>
+  
+  <button onclick="showCameraDisabledModal()" class="upload-btn" style="background: rgba(255,255,255,0.05); border-color: #555; color: #aaa; cursor: pointer;">
+    📸 SCAN COMIC
+  </button>
                 </div>
-
                 <div style="margin-top: 20px; text-align: center;">
                   <p id="preview-placeholder" class="preview-text">Preview rendering zone</p>
                   <img id="preview-img" style="display: none; max-width: 100%; border-radius: 8px; margin-top: 15px;" />

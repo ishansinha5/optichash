@@ -6,6 +6,13 @@
   <title>OpticHash | Resources</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2245%22>🦹</text></svg>">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    @media (max-width: 768px) {
+      .desktop-only {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="subpage-bg"></div>
@@ -25,25 +32,20 @@
         This resource kit provides clean baseline data for testing OpticHash's optimization routing. Download a verified asset below, then upload it to the Live Matcher to observe the system transition from a heavy Python inference task (Cache Miss) to a zero-compute C++ bypass (Cache Hit) in real-time.
       </p>
 
-      <h3 style="color: #0ea5e9; margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 10px;">Cache Hit Targets with Edge Cases</h3>
-      <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
-        <button onclick="downloadAsset('resources_batman_success_thumbs.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Absolute Batman Annual #1 (Thumbs)</button>
-        <button onclick="downloadAsset('resources_betaraybill_success_blurry.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Beta Ray Bill: Argent Star (Trade Paperback - 2025 Edition) (Blurry)</button>
-        <button onclick="downloadAsset('resources_martianmanhunter_success_zoomed.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Absolute Martian Manhunter #8 (Cover A) (Zoomed)</button>
-        <button onclick="downloadAsset('resources_nightwing_success.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Nightwing: A Knight in Blüdhaven (Compendium 3) (Clear)</button>
-        <button onclick="downloadAsset('resources_tf4_milana_success.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Transformers #4 (Cover E: Milana Variant) (Digital)</button>
-      </div>
-      <div style="background: rgba(255, 215, 0, 0.1); border-left: 4px solid #FFD700; padding: 15px 20px; margin-top: 20px; margin-bottom: 20px; border-radius: 0 8px 8px 0;">
-        <p style="color: #FFD700; font-size: 0.9em; margin: 0; line-height: 1.5; font-family: monospace;">
-          <strong>📱 MOBILE DEVICE NOTE:</strong><br>
-          iOS and Android operating systems aggressively strip original filenames and EXIF metadata when saving images to the local camera roll. To properly observe the pre-configured routing simulation using the assets below, <strong>testing on a desktop browser is recommended.</strong>
-        </p>
-      </div>
-      <h3 style="color: #dc3545; margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 10px;">Cache Miss Targets (Specific Failed Cases)</h3>
+      <h3 style="color: #0ea5e9; margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 10px;">Cache Hit Targets (Spatial Matches)</h3>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+          <button onclick="downloadAsset('resources_batman_success_thumbs.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Absolute Batman (Thumbs)</button>
+          <button onclick="downloadAsset('resources_nightwing_success.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px;">📥 Nightwing (Clear)</button> 
+          <button onclick="downloadAsset('resources_betaraybill_success_blurry.jpg')" class="upload-btn desktop-only" style="font-size: 0.9rem; padding: 8px;">📥 Beta Ray Bill (Blurry)</button>
+          <button onclick="downloadAsset('resources_martianmanhunter_success_zoomed.jpg')" class="upload-btn desktop-only" style="font-size: 0.9rem; padding: 8px;">📥 Martian Manhunter (Zoomed)</button>
+          <button onclick="downloadAsset('resources_tf4_milana_success.jpg')" class="upload-btn desktop-only" style="font-size: 0.9rem; padding: 8px;">📥 Transformers #4 (Digital)</button>
+        </div>
+      <h3 style="color: #dc3545; margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 10px;">Cache Miss Targets (ML Edge Cases)</h3>
       <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
         <button onclick="downloadAsset('resources_batman_failure_hdscan.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px; border-color: #dc3545; color: #dc3545;">📥 Absolute Batman (HD Scan)</button>
-        <button onclick="downloadAsset('resources_betaraybill_failure_angled.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px; border-color: #dc3545; color: #dc3545;">📥 Beta Ray Bill (Angled)</button>
-        <button onclick="downloadAsset('resources_martianmanhunter_failure_noisy.jpg')" class="upload-btn" style="font-size: 0.9rem; padding: 8px; border-color: #dc3545; color: #dc3545;">📥 Martian Manhunter (Noisy)</button>
+    
+        <button onclick="downloadAsset('resources_betaraybill_failure_angled.jpg')" class="upload-btn desktop-only" style="font-size: 0.9rem; padding: 8px; border-color: #dc3545; color: #dc3545;">📥 Beta Ray Bill (Angled)</button>
+        <button onclick="downloadAsset('resources_martianmanhunter_failure_noisy.jpg')" class="upload-btn desktop-only" style="font-size: 0.9rem; padding: 8px; border-color: #dc3545; color: #dc3545;">📥 Martian Manhunter (Noisy)</button>
       </div>
     </div>
   </div>
