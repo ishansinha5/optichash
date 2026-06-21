@@ -113,8 +113,8 @@ I built this distributed, hardware-aware computer vision pipeline as a proof of 
 
 To achieve this performance isolation, I broke the application down into specialized microservices orchestrated via Docker Compose:
 
-* **Zone 1: The Presentation Client (Frontend):** A responsive web application written in standard vanilla JavaScript. It handles automated file preprocessing and explicit telemetry capture.
-* **Zone 2: The Core Routing Gateway (Java Spring Boot):** The central traffic controller. It orchestrates service discovery, handles network message serialization, and executes the dynamic cache write-back loops.
+* **Zone 1: The Presentation Client (Frontend / Vercel):** A responsive web application written in standard vanilla JavaScript. Because the live backend is hibernating (see deployment notes below), this layer currently acts as a **Stateful Architectural Simulator**. It uses a localized HTML5 Canvas pixel analysis to bypass mobile OS file-stripping, perfectly simulating the backend's cache routing logic in real-time within the user's browser.
+* **Zone 2: The Core Routing Gateway (Java Spring Boot):** The central traffic controller. It orchestrates service discovery, handles network message serialization, and executes the dynamic cache write-back loops. *(To dive into the exact routing logic, see the [gateway-java/README.md](gateway-java/README.md)).*
 * **Zone 3: The Perceptual Bouncer (Native C++):** A high-performance microservice that computes geometric image hashes at the hardware level. If an asset matches, it bypasses the neural network completely, serving data instantaneously and dynamically tracking the exact compute footprint saved.
 * **Zone 4: The Edge Neural Brain (Python FastAPI):** Triggered strictly when the C++ gatekeeper encounters a completely new image. It hosts custom computer vision weights and calculates the exact mathematical weight of its own inferences using `fvcore`.
 
@@ -128,6 +128,26 @@ The true power of this project lies in how the underlying software architecture 
 2. **INT8 Dynamic Quantization:** Rather than deploying large FP32 weight matrices, the PyTorch model undergoes an aggressive quantization pass via `torchao`. Compressing the neural node values down to 8-bit dynamic integers keeps the volatile memory footprint incredibly low.
 3. **The Telemetry Write-Back Loop:** When Python encounters a new image, the Java Gateway catches the resulting metadata and FLOP count, and fires it backward into the C++ memory map. The system actively learns and self-optimizes in real time.
 
+---
+
+## The Reality of Cloud Deployment & The Live Demo Compromise
+
+Hosting a multi-container pipeline containing an enterprise Spring Boot gateway, a PostGIS database, and a PyTorch tensor engine requires substantial hardware. 
+
+During deployment, I hit the exact hardware constraints this project was designed to study:
+* Standard free-tier cloud instances (like AWS `t2.micro` or Azure student VMs) are hardcapped at 1GB of RAM. The moment the PyTorch container attempts to load tensor weights alongside the Java JVM, the Linux kernel triggers an Out-Of-Memory (OOM) killer and violently crashes the server.
+* The ideal solution—Oracle Cloud's 24GB ARM free tier—is subject to extreme datacenter capacity limits, essentially turning server provisioning into a physical lottery.
+
+**The Hugging Face Temptation:**
+The easiest path forward would have been to strip the PyTorch model out of my Docker network, host it on Hugging Face's free inference API, and wire the frontend directly to it. 
+
+**The Architectural Choice:**
+I chose not to do that, because doing so completely betrays the soul of the project. This project isn't about basic image classification; it is about building a strict, hardware-aware edge gateway that *avoids* generic API calls. Outsourcing the compute to Hugging Face would mean throwing away the C++ geometric gatekeeper and the Java routing layers—the very engineering that makes this architecture valuable.
+
+**The Solution:**
+To preserve the integrity of the code, the live multi-container backend is currently **hibernating**. The live portfolio site deployed on Vercel utilizes an advanced Javascript state machine to simulate the exact routing logic, cache hits, and telemetry visualization. We even built a localized HTML5 Canvas fallback to combat aggressive iOS/Android filename stripping, allowing the frontend to act as a lightweight edge-inferencer. 
+
+The live site perfectly demonstrates the *logic* of the system, while the pristine, uncompromised backend architecture remains fully documented and available for review here on GitHub.
 ---
 
 ## Local Development & Orchestration
