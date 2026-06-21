@@ -6,6 +6,14 @@
   <title>OpticHash | Scanner</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2245%22>🦹</text></svg>">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* Hide the fake camera button on desktop */
+    @media (min-width: 769px) {
+      .mobile-only {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="subpage-bg"></div>
@@ -49,22 +57,22 @@
                       <div style="display: flex; justify-content: center; gap: 15px; margin-top: 15px; flex-wrap: wrap;">
                           
                           <div class="example-card" onclick="openScanModal('assets/images/resources_nightwing_success.jpg', 'Clear Photo: Minimal hand overlap with the cover, crisp line contrast, and uniform, indirect lighting with no high-intensity glare hotspots.')" style="cursor: zoom-in;">
-                              <img src="assets/images/good_scan_1.jpg" alt="Digital Scan" style="height: 120px; width: auto; border: 2px solid #28a745; border-radius: 8px;">
+                              <img src="assets/images/resources_nightwing_success.jpg" alt="Clear Scan" style="height: 120px; width: auto; border: 2px solid #28a745; border-radius: 8px;">
                               <p style="color: #28a745; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">✔️ Clear</p>
                           </div>
                           
                           <div class="example-card" onclick="openScanModal('assets/images/resources_tf4_milana_success.jpg', 'Digital Scan: Flat geometric orientation where the entire cover area fills the bulk of the frame, maximizing keypoint extraction.')" style="cursor: zoom-in;">
-                              <img src="assets/images/good_scan_2.jpg" alt="Clear Lighting" style="height: 120px; width: auto; border: 2px solid #28a745; border-radius: 8px;">
+                              <img src="assets/images/resources_tf4_milana_success.jpg" alt="Digital Scan" style="height: 120px; width: auto; border: 2px solid #28a745; border-radius: 8px;">
                               <p style="color: #28a745; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">✔️ Flat</p>
                           </div>
                           
                           <div class="example-card" onclick="openScanModal('assets/images/resources_batman_success_thumbs.jpg', 'In-Hand (Complex Background): While holding the comic obscures parts of the cover, the primary structural line art elements are still visible enough for spatial mapping.')" style="cursor: zoom-in;">
-                              <img src="assets/images/bad_scan_1.jpg" alt="Cover Blockage" style="height: 120px; width: auto; border: 2px solid #facc15; border-radius: 8px;">
+                              <img src="assets/images/resources_batman_success_thumbs.jpg" alt="In-Hand Scan" style="height: 120px; width: auto; border: 2px solid #facc15; border-radius: 8px;">
                               <p style="color: #facc15; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">⚠️ In-Hand</p>
                           </div>
                           
                           <div class="example-card" onclick="openScanModal('assets/images/resources_betaraybill_success_blurry.jpg', 'Blurry/Low Light: The image lacks sharp definition, and environmental lighting glare reflects directly off the gloss coat, washing out color values.')" style="cursor: zoom-in;">
-                              <img src="assets/images/bad_scan_2.jpg" alt="Unsupported Cover" style="height: 120px; width: auto; border: 2px solid #dc3545; border-radius: 8px;">
+                              <img src="assets/images/resources_betaraybill_success_blurry.jpg" alt="Blurry Scan" style="height: 120px; width: auto; border: 2px solid #dc3545; border-radius: 8px;">
                               <p style="color: #dc3545; font-size: 0.8em; margin-top: 5px; font-weight: bold; text-align: center;">❌ Blurry</p>
                           </div>
                           
@@ -75,15 +83,16 @@
               <div class="scanner-container" style="margin-top: 0; width: 100%; max-width: 100%;">
                 
                 <div class="scanner-buttons" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-  <label class="upload-btn">
-    📁 UPLOAD ASSET
-    <input type="file" accept="image/*,.heic,.heif,image/heic,image/heif" style="display: none;" onchange="previewAndUpload(event)">
-  </label>
-  
-  <button onclick="showCameraDisabledModal()" class="upload-btn" style="background: rgba(255,255,255,0.05); border-color: #555; color: #aaa; cursor: pointer;">
-    📸 SCAN COMIC
-  </button>
+                  <label class="upload-btn">
+                    📁 UPLOAD ASSET
+                    <input type="file" accept="image/*,.heic,.heif,image/heic,image/heif" style="display: none;" onchange="previewAndUpload(event)">
+                  </label>
+                  
+                  <button onclick="showCameraDisabledModal()" class="upload-btn mobile-only" style="background: rgba(255,255,255,0.05); border-color: #555; color: #aaa; cursor: pointer;">
+                    📸 SCAN COMIC
+                  </button>
                 </div>
+
                 <div style="margin-top: 20px; text-align: center;">
                   <p id="preview-placeholder" class="preview-text">Preview rendering zone</p>
                   <img id="preview-img" style="display: none; max-width: 100%; border-radius: 8px; margin-top: 15px;" />
